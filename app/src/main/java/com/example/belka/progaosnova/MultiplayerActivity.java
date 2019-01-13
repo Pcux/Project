@@ -1,5 +1,6 @@
 package com.example.belka.progaosnova;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,12 +14,23 @@ public class MultiplayerActivity extends AppCompatActivity implements View.OnCli
         setContentView(R.layout.activity_multiplayer);
         Button buttonBack = (Button)findViewById(R.id.buttonBack);
         buttonBack.setOnClickListener(this);
+        Button buttonNewAcc = (Button)findViewById(R.id.buttonNewAcc);
+        buttonNewAcc.setOnClickListener(this);
+        Button buttonNext = (Button)findViewById(R.id.buttonNext);
+        buttonNext.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.buttonBack:
                 finish();
+                break;
+            case R.id.buttonNewAcc:
+                Intent NAintent = new Intent(this,CreateActivity.class);
+                startActivity(NAintent);
+                break;
+            case R.id.buttonNext:
+                break;
         }
     }
 }
