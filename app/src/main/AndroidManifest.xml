@@ -19,7 +19,8 @@
         <activity android:name=".SingleplayerActivity" />
         <activity android:name=".MultiplayerActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".StatisticsActivity"></activity>
+        <activity android:name=".StatisticsActivity" />
+        <activity android:name=".CreateActivity"></activity>
     </application>
 
 </manifest>
