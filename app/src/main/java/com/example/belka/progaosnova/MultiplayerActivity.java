@@ -12,8 +12,6 @@ public class MultiplayerActivity extends AppCompatActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplayer);
-        Button buttonBack = (Button)findViewById(R.id.buttonBack);
-        buttonBack.setOnClickListener(this);
         Button buttonNewAcc = (Button)findViewById(R.id.buttonNewAcc);
         buttonNewAcc.setOnClickListener(this);
         Button buttonNext = (Button)findViewById(R.id.buttonNext);
@@ -22,9 +20,6 @@ public class MultiplayerActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonBack:
-                finish();
-                break;
             case R.id.buttonNewAcc:
                 Intent NAintent = new Intent(this,CreateActivity.class);
                 startActivity(NAintent);

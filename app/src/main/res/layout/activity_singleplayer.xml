@@ -8,15 +8,6 @@
     android:background="#BBBBBB">
 
     <Button
-        style="@style/BackStyle"
-        android:id="@+id/buttonBack"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="12dp"
-        android:text="@string/str_back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/guess_signs"
         style="@style/BackStyle"
         android:layout_width="wrap_content"
