@@ -11,14 +11,10 @@ public class SingleplayerActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_singleplayer);
-        Button buttonBack = (Button)findViewById(R.id.buttonBack);
-        buttonBack.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.buttonBack:
-                finish();
         }
     }
 }

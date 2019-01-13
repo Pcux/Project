@@ -7,12 +7,4 @@
     tools:context=".StatisticsActivity"
     android:background="#BBBBBB">
 
-    <Button
-        style="@style/BackStyle"
-        android:id="@+id/buttonBack"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

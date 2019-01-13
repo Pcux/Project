@@ -7,15 +7,6 @@
     android:background="#BBBBBB"
     tools:context=".MultiplayerActivity">
 
-    <Button
-        android:id="@+id/buttonBack"
-        style="@style/BackStyle"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
         android:id="@+id/editText"
         android:layout_width="wrap_content"
