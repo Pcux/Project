@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">ProgaOsnova</string>
     <string name="str_back">Back</string>
-    <string name="guess_signs">Расставь знаки</string>
-
+    <string name="guess_signs">Guess the signs</string>
+    <string name="gsrbtextplus">+</string>
+    <string name="gsrbtextminus">-</string>
+    <string name="gsrbtextmul">*</string>
+    <string name="gsrbtextdiv">/</string>
 </resources>
