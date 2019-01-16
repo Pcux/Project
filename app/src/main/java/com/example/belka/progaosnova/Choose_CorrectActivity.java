@@ -15,6 +15,9 @@ import java.util.Random;
 public class Choose_CorrectActivity extends AppCompatActivity implements View.OnClickListener{
 
     int correctAnswer;
+    int bestLevel=0;
+    boolean pop=false;
+    boolean lol=true;
     Button buttonObjectChoice1;
     Button buttonObjectChoice2;
     Button buttonObjectChoice3;
@@ -38,7 +41,9 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
         buttonObjectChoice1 = (Button)findViewById(R.id.buttonChoice1);
         buttonObjectChoice2 = (Button)findViewById(R.id.buttonChoice2);
         buttonObjectChoice3 = (Button)findViewById(R.id.buttonChoice3);
+        Button button = (Button)findViewById(R.id.button);
 
+        button.setOnClickListener(this);
         buttonObjectChoice1.setOnClickListener(this);
         buttonObjectChoice2.setOnClickListener(this);
         buttonObjectChoice3.setOnClickListener(this);
@@ -63,6 +68,10 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
 
             case R.id.buttonChoice3:
                 answerGiven = Integer.parseInt("" + buttonObjectChoice3.getText());
+                break;
+            case R.id.button:
+                finish();
+                lol=false;
                 break;
 
         }
@@ -92,7 +101,7 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
             correctAnswer = partA * partB;
             textOperator.setText(""+"*");
         }
-        if (sign==3){
+        if (sign==3) {
             if (partA%partB==0)
                 correctAnswer = partA / partB;
             else {
@@ -133,6 +142,10 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
 //for(int i = 1; i <= currentLevel; i++)
             currentScore = currentScore + currentLevel;
             currentLevel++;
+            if(bestLevel<=currentLevel) {
+                pop=true;
+                bestLevel=currentLevel;
+            }
         }
         else{
             currentScore = 0;
@@ -146,12 +159,14 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
 
         boolean correctTrueOrFalse;
         if(answerGiven == correctAnswer){
-
-            Toast.makeText(getApplicationContext(), "You right!", Toast.LENGTH_LONG).show();
-            correctTrueOrFalse=true;
+           correctTrueOrFalse=true;
         }else{
-            Toast.makeText(getApplicationContext(), "Wrong answer", Toast.LENGTH_LONG).show();
+            if(pop && lol)
+                Toast.makeText(getApplicationContext(), "Wrong answer \nScore:" + currentScore + "  Level: " + currentLevel + "\nCongratulations! This is the best result of the session", Toast.LENGTH_LONG).show();
+            else if (lol)
+                Toast.makeText(getApplicationContext(), "Wrong answer \nScore:" + currentScore + "  Level: " + currentLevel + "\nBest level: " + bestLevel, Toast.LENGTH_LONG).show();
             correctTrueOrFalse=false;
+            pop=false;
         }
 
         return correctTrueOrFalse;
