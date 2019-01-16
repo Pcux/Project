@@ -22,8 +22,9 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
     TextView textObjectAnswer;
     int currentScore = 0;
     int currentLevel = 1;
-
-
+    int bestLevel = 1;
+    boolean pop=false;
+    boolean lol=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,9 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
         textObjectAnswer = (TextView)findViewById(R.id.textViewAns);
         buttonNo = (Button)findViewById(R.id.buttonNo);
         buttonYes = (Button)findViewById(R.id.buttonYes);
+        Button button = (Button)findViewById(R.id.button);
 
+        button.setOnClickListener(this);
         buttonYes.setOnClickListener(this);
         buttonNo.setOnClickListener(this);
 
@@ -64,6 +67,10 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
                     buttof = true;
                 }
                 else buttof = false;
+                break;
+            case R.id.button:
+                finish();
+                lol=false;
                 break;
         }
         updateScoreAndLevel(buttof);
@@ -120,13 +127,20 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
 //for(int i = 1; i <= currentLevel; i++)
             currentScore = currentScore + currentLevel;
             currentLevel++;
-            Toast.makeText(getApplicationContext(), "You right!", Toast.LENGTH_LONG).show();
+            if(bestLevel<currentLevel-1) {
+                bestLevel=currentLevel-1;
+                pop=true;
+            }
         }
         else{
+            if (pop && lol) {
+                Toast.makeText(getApplicationContext(), "Wrong answer \nScore:" + currentScore + "  Level:" + currentLevel + "\nCongratulations! This is the best result of the session", Toast.LENGTH_LONG).show();
+            }
+            else if (lol)
+                Toast.makeText(getApplicationContext(), "Wrong answer \nScore:" + currentScore + "  Level:" + currentLevel + "\nBest level: " + bestLevel, Toast.LENGTH_LONG).show();
+            pop=false;
             currentScore = 0;
             currentLevel = 1;
-            Toast.makeText(getApplicationContext(), "Wrong answer", Toast.LENGTH_LONG).show();
-
         }
         textObjectScore.setText("Score: " + currentScore);
         textObjectLevel.setText("Level: " + currentLevel);

@@ -8,12 +8,11 @@
     android:background="#BBBBBB">
 
     <Button
-        style="@style/ButtonStyle"
         android:id="@+id/buttonPlay"
-        android:layout_marginTop="150dp"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="124dp"
         android:text="Singleplayer"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
