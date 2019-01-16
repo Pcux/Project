@@ -1,36 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SingleplayerActivity"
-    android:background="#BBBBBB">
+    android:background="#BBBBBB"
+    tools:context=".SingleplayerActivity">
 
     <Button
         android:id="@+id/guess_signs"
-        style="@style/BackStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="110dp"
-        android:layout_marginEnd="114dp"
-        android:layout_marginBottom="232dp"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="124dp"
         android:gravity="center"
         android:text="@string/guess_signs"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/choose_correctbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="8dp"
         android:text="Choose the correct answer"
         app:layout_constraintEnd_toEndOf="@+id/guess_signs"
         app:layout_constraintHorizontal_bias="0.558"
@@ -39,12 +30,19 @@
 
     <Button
         android:id="@+id/yesorno_button"
-        android:layout_width="wrap_content"
-        android:layout_height="49dp"
-        android:layout_marginTop="36dp"
+        style="@style/ButtonStyle"
+        android:layout_marginTop="8dp"
         android:text="Yes or No"
         app:layout_constraintEnd_toEndOf="@+id/choose_correctbutton"
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="@+id/choose_correctbutton"
         app:layout_constraintTop_toBottomOf="@+id/choose_correctbutton" />
+
+    <Button
+        style="@style/BackStyle"
+        android:id="@+id/button"
+        android:text="Back"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

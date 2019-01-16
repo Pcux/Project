@@ -11,10 +11,15 @@ public class StatisticsActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
+        Button button = (Button)findViewById(R.id.button);
+        button.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.button:
+                finish();
+                break;
         }
     }
 }

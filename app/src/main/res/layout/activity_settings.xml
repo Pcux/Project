@@ -7,4 +7,11 @@
     tools:context=".SettingsActivity"
     android:background="#BBBBBB">
 
+    <Button
+        style="@style/BackStyle"
+        android:id="@+id/button"
+        android:text="Back"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.belka.progaosnova.Choose_CorrectActivity"
     tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="81dp">
+    tools:layout_editor_absoluteY="81dp"
+    android:background="#BBBBBB">
 
     <TextView
         android:id="@+id/textPartA"
@@ -74,6 +75,7 @@
         tools:layout_constraintTop_creator="1" />
 
     <Button
+        style="@style/ButtonStyle"
         android:id="@+id/buttonChoice1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,6 +89,7 @@
         tools:layout_constraintLeft_creator="1" />
 
     <Button
+        style="@style/ButtonStyle"
         android:id="@+id/buttonChoice2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -104,6 +107,7 @@
         tools:layout_constraintTop_creator="1" />
 
     <Button
+        style="@style/ButtonStyle"
         android:id="@+id/buttonChoice3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -111,7 +115,6 @@
         android:layout_marginRight="16dp"
         android:text="5"
         android:textSize="40sp"
-
         app:layout_constraintBaseline_toBaselineOf="@+id/buttonChoice2"
         app:layout_constraintRight_toRightOf="parent"
         tools:layout_constraintBaseline_creator="1"
@@ -150,4 +153,11 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.958" />
+    <Button
+        style="@style/BackStyle"
+        android:id="@+id/button"
+        android:text="Back"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -17,6 +17,8 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_create);
         Button buttonCreateAcc = (Button)findViewById(R.id.buttonCreatAcc);
         buttonCreateAcc.setOnClickListener(this);
+        Button button = (Button)findViewById(R.id.button);
+        button.setOnClickListener(this);
     }
     public void onClick(View v) {
         EditText editText6 = (EditText)findViewById(R.id.editText6);
@@ -37,6 +39,9 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
                     editText7.setText("");
                     editText8.setText("");
                 }
+                break;
+            case R.id.button:
+                finish();
                 break;
         }
     }

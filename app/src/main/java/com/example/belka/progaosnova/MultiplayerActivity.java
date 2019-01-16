@@ -16,6 +16,8 @@ public class MultiplayerActivity extends AppCompatActivity implements View.OnCli
         buttonNewAcc.setOnClickListener(this);
         Button buttonNext = (Button)findViewById(R.id.buttonNext);
         buttonNext.setOnClickListener(this);
+        Button button = (Button)findViewById(R.id.button);
+        button.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
@@ -25,6 +27,9 @@ public class MultiplayerActivity extends AppCompatActivity implements View.OnCli
                 startActivity(NAintent);
                 break;
             case R.id.buttonNext:
+                break;
+            case R.id.button:
+                finish();
                 break;
         }
     }
