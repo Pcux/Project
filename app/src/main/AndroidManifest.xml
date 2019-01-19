@@ -16,14 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".YesornoActivity"/>
+        <activity android:name=".YesornoActivity" />
         <activity android:name=".SingleplayerActivity" />
         <activity android:name=".MultiplayerActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".StatisticsActivity" />
-        <activity android:name=".CreateActivity"></activity>
+        <activity android:name=".CreateActivity" />
         <activity android:name=".Guess_signsActivity" />
-        <activity android:name=".Choose_CorrectActivity"/>
+        <activity android:name=".Choose_CorrectActivity" />
+        <activity android:name=".MathMincerActivity" />
+        <activity android:name=".RulesActivity"></activity>
     </application>
 
 </manifest>

@@ -27,6 +27,8 @@ public class MultiplayerActivity extends AppCompatActivity implements View.OnCli
                 startActivity(NAintent);
                 break;
             case R.id.buttonNext:
+                Intent bNintent = new Intent(this,MathMincerActivity.class);
+                startActivity(bNintent);
                 break;
             case R.id.button:
                 finish();
