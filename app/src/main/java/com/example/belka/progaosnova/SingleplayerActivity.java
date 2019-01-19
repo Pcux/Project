@@ -20,6 +20,8 @@ public class SingleplayerActivity extends AppCompatActivity implements View.OnCl
         yesorno.setOnClickListener(this);
         Button button = (Button)findViewById(R.id.button);
         button.setOnClickListener(this);
+        Button buttonRules = (Button)findViewById(R.id.buttonRules);
+        buttonRules.setOnClickListener(this);
     }
     @Override
     public void onClick(View v) {
@@ -38,6 +40,10 @@ public class SingleplayerActivity extends AppCompatActivity implements View.OnCl
                 break;
             case R.id.button:
                 finish();
+                break;
+            case R.id.buttonRules:
+                Intent bRintent = new Intent(this, RulesActivity.class);
+                startActivity(bRintent);
                 break;
         }
     }

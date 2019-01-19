@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MathMincerActivity">
+    tools:context=".MathMincerActivity"
+    android:id="@+id/main">
 
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/favorites_grid"
@@ -117,5 +118,6 @@
             android:id="@+id/Gbutton25"
             style="@style/GridStyle" />
     </GridLayout>
+
 
 </android.support.constraint.ConstraintLayout>
