@@ -18,6 +18,7 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
     int bestLevel=0;
     boolean pop=false;
     boolean lol=true;
+    boolean bag=true;
     Button buttonObjectChoice1;
     Button buttonObjectChoice2;
     Button buttonObjectChoice3;
@@ -41,9 +42,8 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
         buttonObjectChoice1 = (Button)findViewById(R.id.buttonChoice1);
         buttonObjectChoice2 = (Button)findViewById(R.id.buttonChoice2);
         buttonObjectChoice3 = (Button)findViewById(R.id.buttonChoice3);
-        Button button = (Button)findViewById(R.id.button);
-
-        button.setOnClickListener(this);
+        TextView back = (TextView) findViewById(R.id.back);
+        back.setOnClickListener(this);
         buttonObjectChoice1.setOnClickListener(this);
         buttonObjectChoice2.setOnClickListener(this);
         buttonObjectChoice3.setOnClickListener(this);
@@ -69,14 +69,17 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
             case R.id.buttonChoice3:
                 answerGiven = Integer.parseInt("" + buttonObjectChoice3.getText());
                 break;
-            case R.id.button:
+            case R.id.back:
                 finish();
                 lol=false;
+                bag=false;
                 break;
 
         }
-        updateScoreAndLevel(answerGiven);
-        setQuestion();
+        if (bag) {
+            updateScoreAndLevel(answerGiven);
+            setQuestion();
+        }
     }
 
     void setQuestion(){

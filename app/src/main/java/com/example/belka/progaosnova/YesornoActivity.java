@@ -25,6 +25,7 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
     int bestLevel = 1;
     boolean pop=false;
     boolean lol=true;
+    boolean bag=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +38,8 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
         textObjectAnswer = (TextView)findViewById(R.id.textViewAns);
         buttonNo = (Button)findViewById(R.id.buttonNo);
         buttonYes = (Button)findViewById(R.id.buttonYes);
-        Button button = (Button)findViewById(R.id.button);
-
-        button.setOnClickListener(this);
+        TextView back = (TextView) findViewById(R.id.back);
+        back.setOnClickListener(this);
         buttonYes.setOnClickListener(this);
         buttonNo.setOnClickListener(this);
 
@@ -68,13 +68,16 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 else buttof = false;
                 break;
-            case R.id.button:
+            case R.id.back:
                 finish();
                 lol=false;
+                bag=false;
                 break;
         }
-        updateScoreAndLevel(buttof);
-        setQuestion();
+        if (bag) {
+            updateScoreAndLevel(buttof);
+            setQuestion();
+        }
     }
 
     void setQuestion() {

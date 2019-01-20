@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class SingleplayerActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -18,8 +19,8 @@ public class SingleplayerActivity extends AppCompatActivity implements View.OnCl
         choose_correct.setOnClickListener(this);
         Button yesorno = (Button)findViewById(R.id.yesorno_button);
         yesorno.setOnClickListener(this);
-        Button button = (Button)findViewById(R.id.button);
-        button.setOnClickListener(this);
+        TextView back = (TextView) findViewById(R.id.back);
+        back.setOnClickListener(this);
         Button buttonRules = (Button)findViewById(R.id.buttonRules);
         buttonRules.setOnClickListener(this);
     }
@@ -38,7 +39,7 @@ public class SingleplayerActivity extends AppCompatActivity implements View.OnCl
                 Intent yesornoIntent = new Intent(this, YesornoActivity.class);
                 startActivity(yesornoIntent);
                 break;
-            case R.id.button:
+            case R.id.back:
                 finish();
                 break;
             case R.id.buttonRules:

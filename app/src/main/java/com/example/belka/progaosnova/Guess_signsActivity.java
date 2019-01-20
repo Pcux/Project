@@ -36,8 +36,6 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_guess_signs);
             Button tmpb = findViewById(R.id.tmpb);
-            Button button = (Button)findViewById(R.id.button);
-            button.setOnClickListener(this);
             tmpb.setOnClickListener(this);
             r = new Random(level);
             gstvscore= findViewById(R.id.textScore);
@@ -52,7 +50,10 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
             rg2.setOnCheckedChangeListener(this);
             rg4 = findViewById(R.id.gnrg4);
             rg4.setOnCheckedChangeListener(this);
+            TextView back = (TextView) findViewById(R.id.back);
+            back.setOnClickListener(this);
             refresh();
+
         }
         private void reset(){
             gstvsl.setText(uch2=='+'?"+":uch2=='-'?"-":uch2=='*'?"*":uch2=='/'?"/":" ? ");
@@ -62,13 +63,13 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
         char ch1,ch2,uch2,uch4;
         private void refresh(){
 
-            i = r.nextInt(10);
+            i = r.nextInt(10+level*2)+1;
 
             t = r.nextInt(2);
             ch2 = (t==0)?'+':(i==1)?'-':(i==2)?'*':'/';
 
-            i3 = r.nextInt(9)+1;
-            i2 = (ch2=='/')?(i3*r.nextInt(10)):r.nextInt(10);
+            i3 = r.nextInt(level*2)+1;
+            i2 = (ch2=='/')?(i3*r.nextInt(10)):r.nextInt(level*2)+1;
             t = r.nextInt(4);
             ch1 = (t==0)?'+':'-';
             t1=i;
@@ -177,7 +178,7 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
                     clear();
                     refresh();
                     break;
-                case (R.id.button):
+                case (R.id.back):
                     lol=false;
                     finish();
                     break;
