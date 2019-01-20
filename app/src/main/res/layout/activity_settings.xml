@@ -20,22 +20,22 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:background="#666666">
-            <TextView
-                android:id="@+id/back"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:text="≡"
-                android:textSize="30dp"
-                android:gravity = "left"
-                android:textColor="#FFFFFF" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="SETTING"
-                android:textSize="20dp"
-                android:gravity = "center"
-                android:textColor="#FFFFFF"
-                android:id="@+id/toolbar_title" />
+            <!--<TextView-->
+                <!--android:id="@+id/back"-->
+                <!--android:layout_width="40dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="≡"-->
+                <!--android:textSize="30dp"-->
+                <!--android:gravity = "left"-->
+                <!--android:textColor="#FFFFFF" />-->
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:text="SETTING"-->
+                <!--android:textSize="20dp"-->
+                <!--android:gravity = "center"-->
+                <!--android:textColor="#FFFFFF"-->
+                <!--android:id="@+id/toolbar_title" />-->
 
         </android.support.v7.widget.Toolbar>
     </LinearLayout>

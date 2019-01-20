@@ -3,6 +3,8 @@ package com.example.belka.progaosnova;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,8 +19,11 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_create);
         Button buttonCreateAcc = (Button)findViewById(R.id.buttonCreatAcc);
         buttonCreateAcc.setOnClickListener(this);
-        Button button = (Button)findViewById(R.id.button);
-        button.setOnClickListener(this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Настройки");
     }
     public void onClick(View v) {
         EditText editText6 = (EditText)findViewById(R.id.editText6);
@@ -40,9 +45,16 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
                     editText8.setText("");
                 }
                 break;
-            case R.id.button:
-                finish();
+
+        }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
                 break;
         }
+        return super.onOptionsItemSelected(item);
     }
 }

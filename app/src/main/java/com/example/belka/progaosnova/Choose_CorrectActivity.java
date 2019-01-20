@@ -2,6 +2,8 @@ package com.example.belka.progaosnova;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -42,8 +44,11 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
         buttonObjectChoice1 = (Button)findViewById(R.id.buttonChoice1);
         buttonObjectChoice2 = (Button)findViewById(R.id.buttonChoice2);
         buttonObjectChoice3 = (Button)findViewById(R.id.buttonChoice3);
-        TextView back = (TextView) findViewById(R.id.back);
-        back.setOnClickListener(this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Выбери правильный ответ");
         buttonObjectChoice1.setOnClickListener(this);
         buttonObjectChoice2.setOnClickListener(this);
         buttonObjectChoice3.setOnClickListener(this);
@@ -69,11 +74,11 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
             case R.id.buttonChoice3:
                 answerGiven = Integer.parseInt("" + buttonObjectChoice3.getText());
                 break;
-            case R.id.back:
+            /*case R.id.back:
                 finish();
                 lol=false;
                 bag=false;
-                break;
+                break;*/
 
         }
         if (bag) {
@@ -174,6 +179,14 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
 
         return correctTrueOrFalse;
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 

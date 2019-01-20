@@ -2,6 +2,8 @@ package com.example.belka.progaosnova;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -38,8 +40,11 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
         textObjectAnswer = (TextView)findViewById(R.id.textViewAns);
         buttonNo = (Button)findViewById(R.id.buttonNo);
         buttonYes = (Button)findViewById(R.id.buttonYes);
-        TextView back = (TextView) findViewById(R.id.back);
-        back.setOnClickListener(this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Правда или ложь?");
         buttonYes.setOnClickListener(this);
         buttonNo.setOnClickListener(this);
 
@@ -68,16 +73,25 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 else buttof = false;
                 break;
-            case R.id.back:
+            /*case R.id.back:
                 finish();
                 lol=false;
                 bag=false;
-                break;
+                break;*/
         }
         if (bag) {
             updateScoreAndLevel(buttof);
             setQuestion();
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     void setQuestion() {

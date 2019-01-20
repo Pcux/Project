@@ -2,6 +2,8 @@ package com.example.belka.progaosnova;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -50,8 +52,11 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
             rg2.setOnCheckedChangeListener(this);
             rg4 = findViewById(R.id.gnrg4);
             rg4.setOnCheckedChangeListener(this);
-            TextView back = (TextView) findViewById(R.id.back);
-            back.setOnClickListener(this);
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Расставь знаки");
             refresh();
 
         }
@@ -178,10 +183,10 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
                     clear();
                     refresh();
                     break;
-                case (R.id.back):
+                /*case (R.id.back):
                     lol=false;
                     finish();
-                    break;
+                    break;*/
             }
         }
 
@@ -239,4 +244,13 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
                     break;
             }
         }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     }

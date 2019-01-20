@@ -4,37 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BBBBBB"
+    android:background="#FFFFFF"
     tools:context=".SingleplayerActivity">
 
     <Button
         android:id="@+id/guess_signs"
         style="@style/ButtonStyle"
-        android:layout_marginTop="124dp"
+        android:background="#00CC33"
+        android:layout_width="368dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
         android:gravity="center"
         android:text="@string/guess_signs"
+        app:layout_constraintBottom_toTopOf="@+id/choose_correctbutton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <Button
         android:id="@+id/choose_correctbutton"
         style="@style/ButtonStyle"
-        android:layout_marginTop="8dp"
+        android:background="#66CCFF"
+        android:layout_width="368dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
         android:text="Choose the correct answer"
+        app:layout_constraintBottom_toTopOf="@+id/yesorno_button"
         app:layout_constraintEnd_toEndOf="@+id/guess_signs"
-        app:layout_constraintHorizontal_bias="0.558"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guess_signs"
-    app:layout_constraintTop_toBottomOf="@+id/guess_signs" />
+        app:layout_constraintTop_toBottomOf="@+id/guess_signs" />
 
     <Button
         android:id="@+id/yesorno_button"
         style="@style/ButtonStyle"
-        android:layout_marginTop="8dp"
+        android:layout_width="368dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="16dp"
+        android:background="#FF9933"
         android:text="Yes or No"
+        app:layout_constraintBottom_toTopOf="@+id/buttonRules"
         app:layout_constraintEnd_toEndOf="@+id/choose_correctbutton"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/choose_correctbutton"
         app:layout_constraintTop_toBottomOf="@+id/choose_correctbutton" />
 
@@ -42,41 +56,32 @@
     <Button
         android:id="@+id/buttonRules"
         style="@style/ButtonStyle"
+        android:layout_width="368dp"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#FF6666"
         android:text="Rules"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yesorno_button" />
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="57dp"
         android:orientation="vertical"
         android:textAlignment="4"
         android:textDirection="5">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="#666666">
-            <TextView
-                android:id="@+id/back"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"
-                android:text="≡"
-                android:textSize="30dp"
-                android:gravity = "left"
-                android:textColor="#FFFFFF" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="SINGLEPLAY"
-                android:textSize="20dp"
-                android:gravity = "center"
-                android:textColor="#FFFFFF"
-                android:id="@+id/toolbar_title" />
+
 
         </android.support.v7.widget.Toolbar>
     </LinearLayout>

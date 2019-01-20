@@ -3,6 +3,8 @@ package com.example.belka.progaosnova;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -19,8 +21,11 @@ public class SingleplayerActivity extends AppCompatActivity implements View.OnCl
         choose_correct.setOnClickListener(this);
         Button yesorno = (Button)findViewById(R.id.yesorno_button);
         yesorno.setOnClickListener(this);
-        TextView back = (TextView) findViewById(R.id.back);
-        back.setOnClickListener(this);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Одиночная игра");
         Button buttonRules = (Button)findViewById(R.id.buttonRules);
         buttonRules.setOnClickListener(this);
     }
@@ -39,13 +44,19 @@ public class SingleplayerActivity extends AppCompatActivity implements View.OnCl
                 Intent yesornoIntent = new Intent(this, YesornoActivity.class);
                 startActivity(yesornoIntent);
                 break;
-            case R.id.back:
-                finish();
-                break;
             case R.id.buttonRules:
                 Intent bRintent = new Intent(this, RulesActivity.class);
                 startActivity(bRintent);
                 break;
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
