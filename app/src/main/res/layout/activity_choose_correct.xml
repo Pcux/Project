@@ -7,7 +7,7 @@
     tools:context="com.example.belka.progaosnova.Choose_CorrectActivity"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="81dp"
-    android:background="#BBBBBB">
+    android:background="#EEEEEE">
 
     <TextView
         android:id="@+id/textPartA"
@@ -17,7 +17,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="2"
-        android:textSize="40sp"
+        android:textSize="40dp"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textOperator"
         app:layout_constraintHorizontal_bias="0.0"
@@ -34,7 +35,8 @@
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
         android:text="x"
-        android:textSize="40sp"
+        android:textSize="40dp"
+        android:textColor="#000000"
         app:layout_constraintBaseline_toBaselineOf="@+id/textPartB"
         app:layout_constraintLeft_toLeftOf="@+id/textView4"
         tools:layout_constraintBaseline_creator="1"
@@ -49,7 +51,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="2"
-        android:textSize="40sp"
+        android:textSize="40dp"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"
@@ -67,8 +70,9 @@
         android:layout_marginLeft="33dp"
         android:layout_marginTop="46dp"
         android:text="="
+        android:textSize="40dp"
+        android:textColor="#000000"
         android:textAlignment="center"
-        android:textSize="40sp"
         app:layout_constraintLeft_toLeftOf="@+id/buttonChoice2"
         app:layout_constraintTop_toBottomOf="@+id/textOperator"
         tools:layout_constraintLeft_creator="1"
@@ -129,6 +133,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Score: "
+        android:textSize="20dp"
+        android:textColor="#000000"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.266"
@@ -146,6 +152,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Level:"
+        android:textSize="20dp"
+        android:textColor="#000000"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.739"
@@ -165,7 +173,7 @@
             android:id="@+id/toolbar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:background="#666666">
+            android:background="#3366CC">
 
         </android.support.v7.widget.Toolbar>
     </LinearLayout>

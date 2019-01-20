@@ -7,10 +7,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MultiplayerActivity extends AppCompatActivity implements View.OnClickListener{
-
+    EditText editText2;
+    EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,9 +23,12 @@ public class MultiplayerActivity extends AppCompatActivity implements View.OnCli
         buttonNext.setOnClickListener(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        editText = findViewById(R.id.editText);
+        editText.setOnClickListener(this);
+        editText2 = findViewById(R.id.editText2);
+        editText2.setOnClickListener(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Многопольз. игра");
+        getSupportActionBar().setTitle("Сетевая игра");
     }
     @Override
     public void onClick(View v) {
@@ -35,6 +40,12 @@ public class MultiplayerActivity extends AppCompatActivity implements View.OnCli
             case R.id.buttonNext:
                 Intent bNintent = new Intent(this,MathMincerActivity.class);
                 startActivity(bNintent);
+                break;
+            case R.id.editText:
+                editText.setText("");
+                break;
+            case R.id.editText2:
+                editText2.setText("");
                 break;
 
         }

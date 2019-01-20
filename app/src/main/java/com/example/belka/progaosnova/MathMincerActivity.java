@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -13,10 +14,13 @@ import java.util.Random;
 
 public class MathMincerActivity extends AppCompatActivity implements View.OnClickListener, QuestionView.Callback {
 
+
+    EditText editText;
     int num = 0;
     QuestionView questionView;
     String[][] problems=new String[16][2];
     int[] numProblems = new int[16];
+    int[][] statistic = new int[5][3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +33,8 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         problems[1][1] = "120";
         problems[2][0] = "Вычислите коэффициент при x^100 в многочлене  (1 + x + x^2 + ... + x^100)^3  после приведения всех подобных членов.";
         problems[2][1] = "5151";
-        problems[3][0] = "Пусть  P(x) = (2x^2–2x+1)^17(3x^2–3x+ 1)^17.  Найдите сумму коэффициентов этого многочлена.";
-        problems[3][1] = "5151";
+        problems[3][0] = "Пусть  P(x) = (2x^2–2x+1)^17 * (3x^2–3x+ 1)^17.  Найдите сумму коэффициентов этого многочлена.";
+        problems[3][1] = "1";
         problems[4][0] = "Было семь ящиков. В некоторые из них положили еще по семь ящиков (не вложенных друг в друга) и т.д. В итоге стало 10 непустых ящиков. Сколько всего стало ящиков?";
         problems[4][1] = "77";
         problems[5][0] = "Лягушка прыгает по вершинам треугольника ABC, перемещаясь каждый раз в одну из соседних вершин. Сколькими способами она может попасть из A в A за 8 прыжков?";
@@ -56,6 +60,9 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         problems[15][0] = "Периоды двух последовательностей – 7 и 13. Какова максимальная длина начального куска, который может у них совпадать?";
         problems[15][1] = "18";
 
+        editText = findViewById(R.id.editText);
+        editText.setOnClickListener(this);
+
         randomListProblems();
         num=numProblems[0];
         questionView = findViewById(R.id.questionView);
@@ -66,7 +73,9 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-
+            case R.id.editText:
+                editText.setText("");
+                break;
         }
     }
     @Override

@@ -151,10 +151,10 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
         }
         else{
             if (pop && lol) {
-                Toast.makeText(getApplicationContext(), "Wrong answer \nScore:" + currentScore + "  Level:" + currentLevel + "\nCongratulations! This is the best result of the session", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Неправильный ответ \nСчет:" + currentScore + "  Уровень:" + currentLevel + "\nПоздравляю! это лучший результат за сессию", Toast.LENGTH_LONG).show();
             }
             else if (lol)
-                Toast.makeText(getApplicationContext(), "Wrong answer \nScore:" + currentScore + "  Level:" + currentLevel + "\nBest level: " + bestLevel, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Неправильный ответ \nСчет:" + currentScore + "  Уровень:" + currentLevel + "\nЛучший уровень: " + bestLevel, Toast.LENGTH_LONG).show();
             pop=false;
             currentScore = 0;
             currentLevel = 1;

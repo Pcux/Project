@@ -149,9 +149,9 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
             else if (lol)
             {
                 if (pop)
-                    Toast.makeText(getApplicationContext(),"Wrong answer \nScore:" + score + "  Level:" + level + "\nCongratulations! This is the best result of the session" , Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Неправильный ответ \nСчет:" + score + "  Уровень:" + level + "\nПоздравляю! это лучший результат за сессию" , Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText(getApplicationContext(),"Wrong answer \nScore:" + score + "  Level:" + level + "\nBest level: " + bestLevel , Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Неправильный ответ \nСчет:" + score + "  Уровень:" + level + "\nЛучший уровень: " + bestLevel , Toast.LENGTH_LONG).show();
 
                 return false;
             }

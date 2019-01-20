@@ -170,9 +170,9 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
            correctTrueOrFalse=true;
         }else{
             if(pop && lol)
-                Toast.makeText(getApplicationContext(), "Wrong answer \nScore:" + currentScore + "  Level: " + currentLevel + "\nCongratulations! This is the best result of the session", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Неправильный ответ \nСчет:" + currentScore + "  Уровень: " + currentLevel + "\nПоздравляю! это лучший результат за сессию", Toast.LENGTH_LONG).show();
             else if (lol)
-                Toast.makeText(getApplicationContext(), "Wrong answer \nScore:" + currentScore + "  Level: " + currentLevel + "\nBest level: " + bestLevel, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Неправильный ответ \nСчет:" + currentScore + "  Уровень: " + currentLevel + "\nЛучший уровень: " + bestLevel, Toast.LENGTH_LONG).show();
             correctTrueOrFalse=false;
             pop=false;
         }

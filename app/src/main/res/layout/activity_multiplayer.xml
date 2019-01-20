@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BBBBBB"
+    android:background="#EEEEEE"
     tools:context=".MultiplayerActivity">
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="wrap_content"
+        android:layout_width="236dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="enter a name"
+        android:text="имя"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,8 +40,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Authorization"
+        android:text="Выберите комнату"
         android:textSize="30dp"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/editText2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -50,11 +51,12 @@
         app:layout_constraintVertical_bias="0.934" />
 
     <Button
+        style="@style/ButtonStyle"
         android:id="@+id/buttonNewAcc"
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="create an host"
+        android:text="Создать комнату"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
@@ -70,7 +72,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#666666">
+            android:background="#3366CC">
 
 
         </android.support.v7.widget.Toolbar>
@@ -78,11 +80,11 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="wrap_content"
+        android:layout_width="236dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="enter the host name"
+        android:text="название комнаты"
         app:layout_constraintBottom_toTopOf="@+id/buttonNewAcc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

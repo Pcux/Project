@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#BBBBBB">
+    android:background="#EEEEEE">
 
     <TextView
         android:id="@+id/textViewB"
@@ -14,7 +14,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        android:textSize="25sp"
+        android:textSize="33dp"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -30,7 +31,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        android:textSize="25sp"
+        android:textSize="33dp"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -44,7 +46,8 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        android:textSize="25sp"
+        android:textSize="33dp"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -57,7 +60,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
-        android:textSize="25sp"
+        android:textSize="33dp"
+        android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewB"
         app:layout_constraintHorizontal_bias="0.5"
@@ -73,7 +77,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="="
-        android:textSize="25sp"
+        android:textSize="33dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textViewAns"
         app:layout_constraintHorizontal_bias="0.5"
@@ -88,7 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="No"
+        android:text="Нет"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/buttonYes"
         app:layout_constraintHorizontal_bias="0.5"
@@ -104,7 +108,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="3dp"
         android:layout_marginBottom="8dp"
-        android:text="Yes"
+        android:text="Да"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -121,6 +125,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Score: 0"
+        android:textSize="18dp"
+        android:textColor="#000000"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.266"
@@ -138,6 +144,8 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Level: 1"
+        android:textSize="18dp"
+        android:textColor="#000000"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.739"
@@ -157,7 +165,7 @@
             android:id="@+id/toolbar"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:background="#666666">
+            android:background="#3366CC">
 
         </android.support.v7.widget.Toolbar>
     </LinearLayout>

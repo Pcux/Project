@@ -17,7 +17,7 @@ public class StatisticsActivity extends AppCompatActivity implements View.OnClic
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Настройки");
+        getSupportActionBar().setTitle("Статистика");
     }
     @Override
     public void onClick(View v) {

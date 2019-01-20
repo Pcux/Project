@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#BBBBBB">
+    android:background="#EEEEEE">
 
     <Button
         android:id="@+id/buttonPlay"
         style="@style/ButtonStyle"
         android:layout_marginTop="124dp"
-        android:text="Singleplayer"
+        android:text="Одиночная игра"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,7 +21,7 @@
         style="@style/ButtonStyle"
         android:id="@+id/buttonMultiplayer"
         android:layout_marginTop="8dp"
-        android:text="Multiplayer"
+        android:text="Сетевая игра"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
         style="@style/ButtonStyle"
         android:id="@+id/buttonSettings"
         android:layout_marginTop="8dp"
-        android:text="Settings"
+        android:text="Настройки"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
         style="@style/ButtonStyle"
         android:id="@+id/buttonStatistics"
         android:layout_marginTop="8dp"
-        android:text="Statistics"
+        android:text="Статистика"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +51,7 @@
         style="@style/ButtonStyle"
         android:id="@+id/buttonQuit"
         android:layout_marginTop="8dp"
-        android:text="Quit"
+        android:text="Выход"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"

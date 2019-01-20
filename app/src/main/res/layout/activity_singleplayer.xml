@@ -10,13 +10,13 @@
     <Button
         android:id="@+id/guess_signs"
         style="@style/ButtonStyle"
-        android:background="#00CC33"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp"
+        android:background="#00CC33"
         android:gravity="center"
-        android:text="@string/guess_signs"
+        android:text="Расставьте знаки"
         app:layout_constraintBottom_toTopOf="@+id/choose_correctbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,12 +25,12 @@
     <Button
         android:id="@+id/choose_correctbutton"
         style="@style/ButtonStyle"
-        android:background="#66CCFF"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="2dp"
-        android:text="Choose the correct answer"
+        android:background="#66CCFF"
+        android:text="Выберите правильный ответ"
         app:layout_constraintBottom_toTopOf="@+id/yesorno_button"
         app:layout_constraintEnd_toEndOf="@+id/guess_signs"
         app:layout_constraintHorizontal_bias="0.5"
@@ -40,12 +40,12 @@
     <Button
         android:id="@+id/yesorno_button"
         style="@style/ButtonStyle"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="16dp"
         android:background="#FF9933"
-        android:text="Yes or No"
+        android:text="Правда или ложь"
         app:layout_constraintBottom_toTopOf="@+id/buttonRules"
         app:layout_constraintEnd_toEndOf="@+id/choose_correctbutton"
         app:layout_constraintHorizontal_bias="0.5"
@@ -56,12 +56,12 @@
     <Button
         android:id="@+id/buttonRules"
         style="@style/ButtonStyle"
-        android:layout_width="368dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="#FF6666"
-        android:text="Rules"
+        android:text="Правила"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -80,7 +80,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#666666">
+            android:background="#3366CC">
 
 
         </android.support.v7.widget.Toolbar>
