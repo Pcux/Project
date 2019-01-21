@@ -4,6 +4,7 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,8 +14,9 @@ import android.widget.TableRow;
 
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
 
-import java.net.Socket;
+
 import java.net.URISyntaxException;
 import java.util.Random;
 
@@ -27,7 +29,9 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
     String[][] problems=new String[16][2];
     int[] numProblems = new int[16];
     int[][] statistic = new int[5][3];
-
+    int[][] table = new int[5][5];
+    int[] temp = new int[25];
+    String namePlayer = "belka";
     Socket socket;
 
 
@@ -81,6 +85,7 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         questionView = findViewById(R.id.questionView);
         questionView.readProblems(problems[num][0]);
         questionView.setCallback(this);
+        toSocket();
     }
 
     @Override
@@ -116,5 +121,49 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         }
     }
 
+    public void toSocket () {
+        try {
+        socket = IO.socket("http://95.163.181.238:80");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                socket.emit("updateTable",
+                        namePlayer,
+                        table[0][0],table[0][1],table[0][2],table[0][3],table[0][4],
+                        table[1][0],table[1][1],table[1][2],table[1][3],table[1][4],
+                        table[2][0],table[2][1],table[2][2],table[2][3],table[2][4],
+                        table[3][0],table[3][1],table[3][2],table[3][3],table[3][4],
+                        table[4][0],table[4][1],table[4][2],table[4][3],table[4][4]);
+                //socket.disconnect();
+                Log.d("socket", Socket.EVENT_CONNECT);
+            }
 
+        }).on("event", new Emitter.Listener() {
+
+            @Override
+            public void call(Object... args) {
+                Log.d("socket", "event");
+            }
+
+        }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
+
+            @Override
+            public void call(Object... args) {
+                Log.d("socket", Socket.EVENT_DISCONNECT);
+            }
+
+        }).on("updateTable", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+
+                for (int i=0;i<5;i++)
+                    for (int j=0;j<5;j++)
+                        table[i][j] = (int) args[0];
+            }
+        });
+        socket.connect();
+    }
 }

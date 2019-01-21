@@ -13,47 +13,71 @@
         style="@style/ButtonStyle"
         android:layout_marginTop="124dp"
         android:text="Одиночная игра"
+        android:textColor="#3366CC"
+        android:background="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableRight="@drawable/ic_action_name"
+        android:paddingRight="4dp"/>
 
     <Button
         style="@style/ButtonStyle"
         android:id="@+id/buttonMultiplayer"
         android:layout_marginTop="8dp"
         android:text="Сетевая игра"
+        android:textColor="#3366CC"
+        android:background="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPlay" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonPlay"
+        android:drawableRight="@drawable/ic_multi"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"/>
 
     <Button
         style="@style/ButtonStyle"
         android:id="@+id/buttonSettings"
         android:layout_marginTop="8dp"
         android:text="Настройки"
+        android:textColor="#3366CC"
+        android:background="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMultiplayer" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonMultiplayer"
+        android:drawableRight="@drawable/ic_setting"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"/>
 
     <Button
         style="@style/ButtonStyle"
         android:id="@+id/buttonStatistics"
         android:layout_marginTop="8dp"
         android:text="Статистика"
+        android:textColor="#3366CC"
+        android:background="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSettings" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSettings"
+        android:drawableRight="@drawable/ic_statistics"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"/>
 
     <Button
         style="@style/ButtonStyle"
         android:id="@+id/buttonQuit"
         android:layout_marginTop="8dp"
         android:text="Выход"
+        android:textColor="#3366CC"
+        android:background="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonStatistics" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonStatistics"
+        android:drawableRight="@drawable/ic_quit"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"/>
 </android.support.constraint.ConstraintLayout>
