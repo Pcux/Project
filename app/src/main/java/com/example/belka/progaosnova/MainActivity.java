@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.buttonMultiplayer:
-                Intent bMuIntent = new Intent(this, MultiplayerActivity.class);
+                Intent bMuIntent = new Intent(this, MathMincerActivity.class);
                 startActivity(bMuIntent);
                 break;
             case R.id.buttonSettings:

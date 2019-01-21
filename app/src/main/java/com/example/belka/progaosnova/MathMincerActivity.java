@@ -11,6 +11,11 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
+import com.github.nkzawa.emitter.Emitter;
+import com.github.nkzawa.socketio.client.IO;
+
+import java.net.Socket;
+import java.net.URISyntaxException;
 import java.util.Random;
 
 public class MathMincerActivity extends AppCompatActivity implements View.OnClickListener, QuestionView.Callback {
@@ -23,12 +28,14 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
     int[] numProblems = new int[16];
     int[][] statistic = new int[5][3];
 
+    Socket socket;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math_mincer);
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
 
         problems[0][0] = "Найдите сумму коэффициентов при чётных степенях в многочлене, который получается из выражения  f(x)=(x^3 – x + 1)^100  в результате раскрытия скобок.";
         problems[0][1] = "1";
@@ -62,6 +69,9 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         problems[14][1] = "144";
         problems[15][0] = "Периоды двух последовательностей – 7 и 13. Какова максимальная длина начального куска, который может у них совпадать?";
         problems[15][1] = "18";
+
+
+
 
         editText = findViewById(R.id.editText);
         editText.setOnClickListener(this);
@@ -105,4 +115,6 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
             numProblems[k]=l;
         }
     }
+
+
 }

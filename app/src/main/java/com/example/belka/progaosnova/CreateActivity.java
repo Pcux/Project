@@ -39,7 +39,9 @@ public class CreateActivity extends AppCompatActivity implements View.OnClickLis
                 Pass = editText7.getText().toString();
                 Doppass = editText8.getText().toString();
                 if (Pass.equals(Doppass)) {
-                    finish();
+                    Intent bCAintent = new Intent(this, RoomActivity.class);
+                    startActivity(bCAintent);
+                    break;
                 }
                 else {
                     textView2.setText("passwords do not match");
