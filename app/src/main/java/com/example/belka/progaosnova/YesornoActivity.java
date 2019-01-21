@@ -1,5 +1,6 @@
 package com.example.belka.progaosnova;
 
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -32,6 +33,8 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yesorno);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         textObjectPartA = (TextView)findViewById(R.id.textViewA);
         textObjectPartB = (TextView)findViewById(R.id.textViewB);
         textObjectScore = (TextView)findViewById(R.id.textScore);

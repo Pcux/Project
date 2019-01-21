@@ -1,6 +1,7 @@
 package com.example.belka.progaosnova;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -15,6 +16,7 @@ public class SingleplayerActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_singleplayer);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Button guess_signs = (Button)findViewById(R.id.guess_signs);
         guess_signs.setOnClickListener(this);
         Button choose_correct = (Button)findViewById(R.id.choose_correctbutton);

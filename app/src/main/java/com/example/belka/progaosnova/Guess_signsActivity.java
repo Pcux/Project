@@ -1,5 +1,6 @@
 package com.example.belka.progaosnova;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -37,6 +38,7 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_guess_signs);
+            setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             Button tmpb = findViewById(R.id.tmpb);
             tmpb.setOnClickListener(this);
             r = new Random(level);

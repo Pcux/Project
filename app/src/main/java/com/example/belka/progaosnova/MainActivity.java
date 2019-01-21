@@ -1,6 +1,7 @@
 package com.example.belka.progaosnova;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonSettings.setOnClickListener(this);
         Button buttonStatistics = (Button)findViewById(R.id.buttonStatistics);
         buttonStatistics.setOnClickListener(this);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
     @Override
     public void onClick(View v) {
