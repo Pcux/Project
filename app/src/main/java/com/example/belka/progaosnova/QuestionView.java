@@ -39,14 +39,16 @@ public class QuestionView extends ConstraintLayout {
         buttonOt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                callback.checkAnswer(editText.getText().toString());
+                callback.checkAnswer(num,editText.getText().toString());
             }
         });
     }
-
-    public void readProblems(String s) {
+    int num;
+    public void nextProblem(Integer num, String s){
         textView.setText(s);
+        this.num=num;
     }
+
 
     public void setCallback(Callback callback) {
         this.callback = callback;
@@ -55,7 +57,7 @@ public class QuestionView extends ConstraintLayout {
 
 
     public interface Callback {
-        public void checkAnswer(String ans);
+        public void checkAnswer(Integer num, String ans);
 
     }
 

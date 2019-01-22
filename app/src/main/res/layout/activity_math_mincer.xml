@@ -6,7 +6,70 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MathMincerActivity">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:textAlignment="4"
+        android:textDirection="5">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:background="#3366CC">
+            <!--<TextView-->
+            <!--android:id="@+id/back"-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="≡"-->
+            <!--android:textSize="30dp"-->
+            <!--android:gravity = "left"-->
+            <!--android:textColor="#FFFFFF" />-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="SETTING"-->
+            <!--android:textSize="20dp"-->
+            <!--android:gravity = "center"-->
+            <!--android:textColor="#FFFFFF"-->
+            <!--android:id="@+id/toolbar_title" />-->
+
+        </android.support.v7.widget.Toolbar>
+    </LinearLayout>
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/content"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:context=".MainActivity">
+        <com.example.belka.progaosnova.ScoreActivity
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/Score">
+
+        </com.example.belka.progaosnova.ScoreActivity>
+        <com.example.belka.progaosnova.GameFieldView
+            android:id="@+id/grid"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="57dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+    </android.support.constraint.ConstraintLayout>
     <com.example.belka.progaosnova.QuestionView
         android:id="@+id/questionView"
         android:layout_width="0dp"

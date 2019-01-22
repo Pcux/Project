@@ -4,6 +4,9 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,9 +16,9 @@ import android.widget.TableRow;
 
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
-
-import java.net.Socket;
+import com.github.nkzawa.socketio.client.Socket;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MathMincerActivity extends AppCompatActivity implements View.OnClickListener, QuestionView.Callback {
@@ -24,18 +27,60 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
     EditText editText;
     int num = 0;
     QuestionView questionView;
-    String[][] problems=new String[16][2];
+    String[][] problems = new String[16][2];
     int[] numProblems = new int[16];
     int[][] statistic = new int[5][3];
-
+    int[][] table = new int[5][5];
+    int[] temp = new int[25];
+    String namePlayer = "belka";
     Socket socket;
 
 
+    GameFieldView grid;
+
+    /*MyGestureDetectorCompat gd;
+    MyOnGestureListener gl;*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math_mincer);
-        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        try {
+            //btn = findViewById(R.id.button);
+            grid = findViewById(R.id.grid);
+            //score = findViewById(R.id.Score);
+            //score.setVisibility(View.INVISIBLE);
+            grid.init(this);
+            // наслаждаемся API нашей вьюхи
+            grid.setSideCount(nplayers);
+            grid.setSpaceBetweenCells(8);
+            //gl = new MyOnGestureListener(R.id.Score,getApplicationContext(),this);
+            //gd = new MyGestureDetectorCompat(getApplicationContext(),gl);
+            //gd.Init(gl);
+            /*View.OnTouchListener touchListener = new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    // pass the events to the gesture detector
+                    // a return value of true means the detector is handling it
+                    // a return value of false means the detector didn't
+                    // recognize the event
+                    try{
+                        return gd.onTouchEvent(event);} catch (Exception e){
+                        e.getMessage();
+                    }
+                    return gd.onTouchEvent(event);
+
+                }};
+            grid.setOnTouchListener(touchListener);*/
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Мат. мясорубка");
+        } catch (Exception e) {
+            System.out.println('e');
+        }
+        // итого в MainActivity минимум кода, осталась только бизнес логика, то есть кол-во ячеек
+        // и кнопка с переключение ячеек, все остальное инкапсулировано в специализированные классы
 
         problems[0][0] = "Найдите сумму коэффициентов при чётных степенях в многочлене, который получается из выражения  f(x)=(x^3 – x + 1)^100  в результате раскрытия скобок.";
         problems[0][1] = "1";
@@ -71,16 +116,56 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         problems[15][1] = "18";
 
 
-
-
         editText = findViewById(R.id.editText);
         editText.setOnClickListener(this);
 
-        randomListProblems();
-        num=numProblems[0];
+        //randomListProblems();
+        num = 0;
         questionView = findViewById(R.id.questionView);
-        questionView.readProblems(problems[num][0]);
+        questionView.nextProblem(num,problems[num][0]);
         questionView.setCallback(this);
+    //    toSocket();
+    }
+    int nplayers=5;
+public  void UpdateTable(){
+        for (int i=0; i<nplayers; i++)
+            for(int j=0; j<nplayers; j++){
+                grid.UpdateCell(i,j, ( (Integer) table[i][j]).toString());
+            }
+}
+   public void toSocket() {
+        try {
+            socket = IO.socket("http://95.163.181.238:80");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+        socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+            @Override
+            public void call(Object... objects) {
+                socket.emit("updateTable", namePlayer, table[0][0], table[0][1], table[0][2], table[0][3], table[0][4], table[1][0], table[1][1], table[1][2], table[1][3], table[1][4], table[2][0],
+                        table[2][1], table[2][2], table[2][3], table[2][4], table[3][0], table[3][1], table[3][2], table[3][3], table[3][4], table[4][0], table[4][1], table[4][2], table[4][3], table[4][4]);
+                Log.d("socket", Socket.EVENT_CONNECT);
+            }
+        }).on("event", new Emitter.Listener() {
+            public void call(Object... args) {
+                Log.d("socket", "event");
+            }
+        }).on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                Log.d("socket", Socket.EVENT_DISCONNECT);
+            }
+
+        }).on("updateTable", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                for (int i = 0; i < nplayers; i++)
+                    for (int j = 0; j < nplayers; j++) {
+                        table[i][j] = (int) args[0];
+                    }
+            }
+        });
+        socket.connect();
     }
 
     @Override
@@ -91,15 +176,17 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
                 break;
         }
     }
-    @Override
-    public void checkAnswer(String ans) {
-        if (ans.equals(problems[0][1])) {
-            questionView.readProblems("+");
+    int n=0;
+    int l=2;
+    public void checkAnswer(Integer num, String ans) {
+        if(problems[num][1].equals(ans)){
+            grid.setpoints(l);
+            l=2;
+            questionView.nextProblem(num++,problems[num][0]);
+        }else {
+            l--;
+            if (l == 0) {questionView.nextProblem(num++, problems[num][0]); l=2;};
         }
-        else {
-            questionView.readProblems("-");
-        }
-
     }
 
     public void randomListProblems() {
