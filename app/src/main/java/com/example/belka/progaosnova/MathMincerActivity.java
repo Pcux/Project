@@ -14,9 +14,9 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
-import com.github.nkzawa.emitter.Emitter;
-import com.github.nkzawa.socketio.client.IO;
-import com.github.nkzawa.socketio.client.Socket;
+//import com.github.nkzawa.emitter.Emitter;
+//import com.github.nkzawa.socketio.client.IO;
+//import com.github.nkzawa.socketio.client.Socket;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -33,7 +33,7 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
     int[][] table = new int[5][5];
     int[] temp = new int[25];
     String namePlayer = "belka";
-    Socket socket;
+    //Socket socket;
 
 
     GameFieldView grid;
@@ -133,7 +133,7 @@ public  void UpdateTable(){
                 grid.UpdateCell(i,j, ( (Integer) table[i][j]).toString());
             }
 }
-   public void toSocket() {
+   /*public void toSocket() {
         try {
             socket = IO.socket("http://95.163.181.238:80");
         } catch (URISyntaxException e) {
@@ -166,7 +166,7 @@ public  void UpdateTable(){
             }
         });
         socket.connect();
-    }
+    }*/
 
     @Override
     public void onClick(View view) {
@@ -185,7 +185,7 @@ public  void UpdateTable(){
             questionView.nextProblem(num++,problems[num][0]);
         }else {
             l--;
-            if (l == 0) {questionView.nextProblem(num++, problems[num][0]); l=2;};
+            if (l == 0) {questionView.nextProblem(++num, problems[num][0]); l=2;};
         }
     }
 
