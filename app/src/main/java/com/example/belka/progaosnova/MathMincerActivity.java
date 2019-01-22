@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -119,12 +122,21 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         editText = findViewById(R.id.editText);
         editText.setOnClickListener(this);
 
-        //randomListProblems();
+        randomListProblems();
         num = 0;
         questionView = findViewById(R.id.questionView);
-        questionView.nextProblem(num,problems[num][0]);
+        questionView.nextProblem(num,problems[numProblems[num]][0]);
         questionView.setCallback(this);
     //    toSocket();
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
     int nplayers=5;
 public  void UpdateTable(){
@@ -173,6 +185,10 @@ public  void UpdateTable(){
         switch (view.getId()) {
             case R.id.editText:
                 editText.setText("");
+                if (bol){
+                    editText.setTextColor(Color.BLACK);
+                    bol=!bol;
+                }
                 break;
         }
     }
@@ -182,13 +198,18 @@ public  void UpdateTable(){
         if(problems[num][1].equals(ans)){
             grid.setpoints(l);
             l=2;
-            questionView.nextProblem(num++,problems[num][0]);
+            questionView.nextProblem(num++,problems[numProblems[num]][0]);
         }else {
             l--;
-            if (l == 0) {questionView.nextProblem(++num, problems[num][0]); l=2;};
+            bol=true;
+            editText.setTextColor(Color.RED);
+            editText.setText("Неправильный ответ");
+            //      Thread t = new Thread(new MyRunnable(editText));
+            //    t.run();
+            if (l == 0) {questionView.nextProblem(++num, problems[numProblems[num]][0]); l=2; };
         }
     }
-
+boolean bol=false;
     public void randomListProblems() {
         Random rand = new Random();
         for (int i=0;i<16;i++) {
