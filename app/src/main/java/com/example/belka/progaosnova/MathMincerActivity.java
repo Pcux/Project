@@ -194,9 +194,10 @@ public  void UpdateTable(){
     int n=0;
     int l=2;
     public void checkAnswer(Integer num, String ans) {
-        if(problems[num][1].equals(ans)){
+        if(problems[numProblems[num]][1].equals(ans)){
             grid.setpoints(l);
             l=2;
+            editText.setText("");
             questionView.nextProblem(num++,problems[numProblems[num]][0]);
         }else {
             l--;
