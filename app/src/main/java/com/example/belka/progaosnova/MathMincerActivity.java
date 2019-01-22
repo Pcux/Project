@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.Toast;
 
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
@@ -24,9 +25,9 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MathMincerActivity extends AppCompatActivity implements View.OnClickListener, QuestionView.Callback {
+public class MathMincerActivity extends AppCompatActivity implements View.OnClickListener, QuestionView.Callback{
 
-
+    int nplayers=2;
     EditText editText;
     int num = 0;
     QuestionView questionView;
@@ -35,9 +36,14 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
     int[][] statistic = new int[5][3];
     int[][] table = new int[5][5];
     int[] temp = new int[25];
-    String namePlayer = "belka";
+    String namePlayer = "Egor";
     Socket socket;
-
+    GameFieldView.Callback cbk=new GameFieldView.Callback() {
+        @Override
+        public void emits(String gameFieldState) {
+            socket.emit("message",MathMincerActivity.this.namePlayer,gameFieldState);
+        }
+    };
 
     GameFieldView grid;
 
@@ -53,9 +59,9 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
             grid = findViewById(R.id.grid);
             //score = findViewById(R.id.Score);
             //score.setVisibility(View.INVISIBLE);
-            grid.init(this);
+            grid.init(cbk,nplayers);
             // наслаждаемся API нашей вьюхи
-            grid.setSideCount(nplayers);
+            grid.setSideCount(5);
             grid.setSpaceBetweenCells(8);
             //gl = new MyOnGestureListener(R.id.Score,getApplicationContext(),this);
             //gd = new MyGestureDetectorCompat(getApplicationContext(),gl);
@@ -129,6 +135,13 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         questionView.setCallback(this);
         toSocket();
 
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        socket.disconnect();
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -139,13 +152,13 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         }
         return super.onOptionsItemSelected(item);
     }
-    int nplayers=5;
-public  void UpdateTable(){
+
+/*public  void UpdateTable(){
         for (int i=0; i<nplayers; i++)
             for(int j=0; j<nplayers; j++){
                 grid.UpdateCell(i,j, ( (Integer) table[i][j]).toString());
             }
-}
+}*/
    public void toSocket() {
         try {
             socket = IO.socket("http://95.163.181.238:80");
@@ -170,10 +183,15 @@ public  void UpdateTable(){
                 Log.d("socket", Socket.EVENT_DISCONNECT);
             }
 
-        }).on("updateTable", new Emitter.Listener() {
+        }).on("message", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-//                for (int i = 0; i < nplayers; i++)
+                String s = new String();
+                s = (String) args[0];
+//                editText.setText(s);
+                Log.d("updateTable", s);
+                decode(s);
+//                  for (int i = 0; i < nplayers; i++)
 //                    for (int j = 0; j < nplayers; j++) {
 //                        table[i][j] = (int) args[0];
 //                    }
@@ -196,20 +214,29 @@ public  void UpdateTable(){
     }
     int n=0;
     int l=2;
+    boolean problemsEnd = true;
     public void checkAnswer(Integer num, String ans) {
-        if(problems[numProblems[num]][1].equals(ans)){
+        if(problems[numProblems[num]][1].equals(ans)&&problemsEnd){
             grid.setpoints(l);
             l=2;
+            bol=false;
             editText.setText("");
-            questionView.nextProblem(num++,problems[numProblems[num]][0]);
-        }else {
+                questionView.nextProblem(++num,problems[numProblems[num]][0]);
+        }else if (problemsEnd) {
             l--;
             bol=true;
             editText.setTextColor(Color.RED);
             editText.setText("Неправильный ответ");
             //      Thread t = new Thread(new MyRunnable(editText));
             //    t.run();
-            if (l == 0) {questionView.nextProblem(++num, problems[numProblems[num]][0]); l=2; };
+            if (l == 0) {
+                questionView.nextProblem(++num, problems[numProblems[num]][0]);
+                l=2;
+            }
+        }
+        if (num>=15) {
+            problemsEnd = false;
+            questionView.nextProblem( 0, "Задачи закончились. Дождитесь конца игры.");
         }
     }
 boolean bol=false;
@@ -228,22 +255,34 @@ boolean bol=false;
     }
 public String encode() {
         String result="";
-        for (int i=0; i<nplayers;i++)
-            for (int j=0; j<nplayers;j++)
+        for (int i=0; i<grid.getRowCount();i++)
+            for (int j=0; j<grid.getRowCount();j++)
             {
                 result=(grid.cells.get(i).get(j).getText()=="")?result+"0 ":result+(grid.cells.get(i).get(j).getText()+" ");
             }
             return result;
 }
-    public void decode(String ss) {
-        char[] s=ss.toCharArray();
-        int c1=0;
-        int c2=0;
-        for(int i=0;i<ss.length();i+=2){
-            grid.cells.get(c1).get(c2++).setText(s[i]);
-            if (c2>nplayers){c2=0; c1++;}
-        }
-        UpdateTable();
+    public void decode(final String ss) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                char[] s = (ss + " ").toCharArray();
+                int c1 = 0;
+                int c2 = 0;
+                for (int i = 0; i < ss.length(); i += 2) {
+                    if (ss.charAt(i) != '0')
+                        grid.cells.get(c1).get(c2).setText((new String() + s[i]).toString());
+                    else
+                        grid.cells.get(c1).get(c2).setText("");
+                    c2++;
+                    if (c2 >= grid.getRowCount()) {
+                        c2 = 0;
+                        c1++;
+                    }
+                }
+            }
+        });
+    }
+        //UpdateTable();
     }
 
-}

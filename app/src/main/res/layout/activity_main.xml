@@ -17,21 +17,25 @@
         android:textColor="#3366CC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawableRight="@drawable/ic_single"
+        android:paddingRight="4dp"/>
 
     <Button
         style="@style/ButtonStyle"
         android:id="@+id/buttonMultiplayer"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Сетевая игра"
         android:background="#FFFFFF"
         android:textColor="#3366CC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonPlay" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonPlay"
+        android:paddingRight="4dp"
+        android:drawableRight="@drawable/ic_multi"/>
 
-    <Button
+    <!--<Button
         style="@style/ButtonStyle"
         android:id="@+id/buttonSettings"
         android:layout_marginTop="8dp"
@@ -41,7 +45,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonMultiplayer" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonMultiplayer"
+         android:drawableLeft="@drawable/ic_setting"/>
 
     <Button
         style="@style/ButtonStyle"
@@ -53,17 +58,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSettings" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonSettings"
+         android:drawableLeft="@drawable/ic_statistic"/>-->
 
     <Button
         style="@style/ButtonStyle"
         android:id="@+id/buttonQuit"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Выход"
         android:background="#FFFFFF"
         android:textColor="#3366CC"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonStatistics" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonMultiplayer"
+        android:drawableRight="@drawable/ic_quit"
+        android:paddingRight="4dp"/>
 </android.support.constraint.ConstraintLayout>

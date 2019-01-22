@@ -19,10 +19,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonQuit.setOnClickListener(this);
         Button buttonMultiplayer = (Button)findViewById(R.id.buttonMultiplayer);
         buttonMultiplayer.setOnClickListener(this);
-        Button buttonSettings = (Button)findViewById(R.id.buttonSettings);
-        buttonSettings.setOnClickListener(this);
-        Button buttonStatistics = (Button)findViewById(R.id.buttonStatistics);
-        buttonStatistics.setOnClickListener(this);
+//        Button buttonSettings = (Button)findViewById(R.id.buttonSettings);
+//        buttonSettings.setOnClickListener(this);
+//        Button buttonStatistics = (Button)findViewById(R.id.buttonStatistics);
+//        buttonStatistics.setOnClickListener(this);
         setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
     @Override
@@ -40,14 +40,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent bMuIntent = new Intent(this, MathMincerActivity.class);
                 startActivity(bMuIntent);
                 break;
-            case R.id.buttonSettings:
-                Intent bSeIntent = new Intent(this, SettingsActivity.class);
-                startActivity(bSeIntent);
-                break;
-            case R.id.buttonStatistics:
-                Intent bStIntent = new Intent(this, StatisticsActivity.class);
-                startActivity(bStIntent);
-                break;
+//            case R.id.buttonSettings:
+//                Intent bSeIntent = new Intent(this, SettingsActivity.class);
+//                startActivity(bSeIntent);
+//                break;
+//            case R.id.buttonStatistics:
+//                Intent bStIntent = new Intent(this, StatisticsActivity.class);
+//                startActivity(bStIntent);
+//                break;
         }
     }
 }

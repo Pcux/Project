@@ -12,6 +12,10 @@ import android.view.animation.AnimationSet;
 import android.view.animation.Interpolator;
 import android.widget.GridLayout;
 
+import com.github.nkzawa.emitter.Emitter;
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -21,7 +25,7 @@ public class GameFieldView extends GridLayout{
     public String TAG = this.getClass().getSimpleName();
 
 
-    public List<List<GameCellView>> cells= new ArrayList<>(5);
+    public List<List<GameCellView>> cells= new ArrayList<>();
     private int spaceBetweenCells = 0;
 
     // обязательно нужно реализовать как минимум 3 конструктора для кастомных вьюх
@@ -49,11 +53,14 @@ public class GameFieldView extends GridLayout{
         aa.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
         as1.addAnimation(aa);
     }
-    Activity acc;
-    public void init(Activity acc) {
+    //Socket socket;
+    Integer nplayers;
+    Callback callback;
+    public void init(final Callback callback, final Integer nplayers) {
         setAlignmentMode(GridLayout.ALIGN_BOUNDS);
-        this.acc=acc;
-
+        this.callback=callback;
+        this.nplayers=nplayers;
+        //this.socket=socket;
         SetAnimations();
 
 
@@ -93,6 +100,10 @@ public class GameFieldView extends GridLayout{
                                         if (CanMove(lastid,view.getId(),p)){
                                             HideOptionsFor(lastid,p);
                                             p=MoveTo(lastid,view.getId(),p);
+                                            if (p==0) {
+                                                String s = encode();
+                                                callback.emits(s);
+                                                }
                                             state--;}
                                         else {if (lastid.equals(view.getId())){state=0; HideOptionsFor(lastid,p);}}
                                         break;
@@ -130,7 +141,7 @@ public class GameFieldView extends GridLayout{
                     }
                 }
                     i=0;
-                while (i<size) {
+                while (i<nplayers) {
                     x=random.nextInt(size);
                     y=random.nextInt(size);
                     if (cells.get(x).get(y).getText()=="") {
@@ -139,17 +150,25 @@ public class GameFieldView extends GridLayout{
 
 
             }
-        });
+            });
     }
 
-    public void UpdateCell(Integer x, Integer y, String value){
+    /*public void UpdateCell(Integer x, Integer y, String value){
         cells.get(x).get(y).setText(value);
-    }
+    }*/
     @Override
     public void setRowCount(int rowCount) {
         // переопределяем этот метод, чтобы нельзя было задать кол-во строк
     }
-
+    public String encode() {
+        String result="";
+        for (int i=0; i<getRowCount();i++)
+            for (int j=0; j<getRowCount();j++)
+            {
+                result=(cells.get(i).get(j).getText()=="")?result+"0 ":result+(cells.get(i).get(j).getText()+" ");
+            }
+        return result;
+    }
     @Override
     public void setColumnCount(int columnCount) {
         // переопределяем этот метод, чтобы нельзя было задать кол-во столбцов
@@ -172,28 +191,7 @@ public class GameFieldView extends GridLayout{
         spaceBetweenCells = space;
     }
 
-    // переключаем ячейку в другой состояние
-    public void toggleCell(int column, int row) {
 
-        // проверяем корректность входных параметров - потому что нашей API может пользоваться кто
-        // угодно, и надо максимально снизить вероятность падения приложения из за неграмотного
-        // использования API (аля полезный совет на будущее)
-        if (column < 0 || column >= getColumnCount()) {
-            Log.d(TAG, "Неверно указан номер колонки!");
-            return;
-        }
-
-        if (row < 0 || column >= getRowCount()) {
-            Log.d(TAG, "Неверно указан номер строки!");
-            return;
-        }
-
-        int index = (row - 1) * getColumnCount() + column - 1;
-        if (index < cells.size()*cells.get(0).size()) {
-            cells.get(column).get(row).toggle(as1,0);
-        }
-    }
-    /*;*/
 
     Integer state=0;
     Integer p=1;
@@ -260,5 +258,7 @@ public class GameFieldView extends GridLayout{
         return !cells.get(id1/10).get(id1%10).getText().toString().equals("");
     }
     Integer lastid=0;
-
+    interface Callback{
+        public void emits(String gameFieldState );
+    }
 }
