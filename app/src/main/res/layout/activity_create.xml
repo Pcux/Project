@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BBBBBB"
+    android:background="#EEEEEE"
     tools:context=".CreateActivity">
 
     <EditText
@@ -14,7 +14,7 @@
         android:layout_marginTop="180dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
+        android:text=" hostname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
 
     <EditText
         android:id="@+id/editText7"
-        android:layout_width="wrap_content"
+        android:layout_width="217dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
@@ -34,7 +34,7 @@
 
     <EditText
         android:id="@+id/editText8"
-        android:layout_width="wrap_content"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
@@ -45,11 +45,13 @@
         app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
     <Button
+        style="@style/ButtonStyle"
         android:id="@+id/buttonCreatAcc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="create"
+        android:text="cоздать"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText8" />
@@ -65,11 +67,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        style="@style/BackStyle"
-        android:id="@+id/button"
-        android:text="Back"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:orientation="vertical"
+        android:textAlignment="4"
+        android:textDirection="5">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#3366CC">
+            <!--<TextView-->
+            <!--android:id="@+id/back"-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="≡"-->
+            <!--android:textSize="30dp"-->
+            <!--android:gravity = "left"-->
+            <!--android:textColor="#FFFFFF" />-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="SETTING"-->
+            <!--android:textSize="20dp"-->
+            <!--android:gravity = "center"-->
+            <!--android:textColor="#FFFFFF"-->
+            <!--android:id="@+id/toolbar_title" />-->
+
+        </android.support.v7.widget.Toolbar>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

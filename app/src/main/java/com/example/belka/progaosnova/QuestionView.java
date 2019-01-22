@@ -55,7 +55,7 @@ public class QuestionView extends ConstraintLayout {
 
 
     public interface Callback {
-        public void checkAnswer (String ans);
+        public void checkAnswer(String ans);
 
     }
 

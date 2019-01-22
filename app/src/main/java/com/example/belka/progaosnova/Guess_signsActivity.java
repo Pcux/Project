@@ -1,7 +1,10 @@
 package com.example.belka.progaosnova;
 
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -13,7 +16,6 @@ import java.util.Random;
 import java.util.logging.Level;
 
 import static java.lang.Math.abs;
-
 
 public class Guess_signsActivity extends AppCompatActivity implements View.OnClickListener,RadioGroup.OnCheckedChangeListener {
 
@@ -36,9 +38,8 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_guess_signs);
+            setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             Button tmpb = findViewById(R.id.tmpb);
-            Button button = (Button)findViewById(R.id.button);
-            button.setOnClickListener(this);
             tmpb.setOnClickListener(this);
             r = new Random(level);
             gstvscore= findViewById(R.id.textScore);
@@ -53,7 +54,13 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
             rg2.setOnCheckedChangeListener(this);
             rg4 = findViewById(R.id.gnrg4);
             rg4.setOnCheckedChangeListener(this);
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setTitle("Расставь знаки");
             refresh();
+
         }
         private void reset(){
             gstvsl.setText(uch2=='+'?"+":uch2=='-'?"-":uch2=='*'?"*":uch2=='/'?"/":" ? ");
@@ -63,13 +70,13 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
         char ch1,ch2,uch2,uch4;
         private void refresh(){
 
-            i = r.nextInt(10);
+            i = r.nextInt(10+level*2)+1;
 
             t = r.nextInt(2);
             ch2 = (t==0)?'+':(i==1)?'-':(i==2)?'*':'/';
 
-            i3 = r.nextInt(9)+1;
-            i2 = (ch2=='/')?(i3*r.nextInt(10)):r.nextInt(10);
+            i3 = r.nextInt(level*2)+1;
+            i2 = (ch2=='/')?(i3*r.nextInt(10)):r.nextInt(level*2)+1;
             t = r.nextInt(4);
             ch1 = (t==0)?'+':'-';
             t1=i;
@@ -144,9 +151,9 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
             else if (lol)
             {
                 if (pop)
-                    Toast.makeText(getApplicationContext(),"Wrong answer \nScore:" + score + "  Level:" + level + "\nCongratulations! This is the best result of the session" , Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Неправильный ответ \nСчет:" + score + "  Уровень:" + level + "\nПоздравляю! это лучший результат за сессию" , Toast.LENGTH_LONG).show();
                 else
-                    Toast.makeText(getApplicationContext(),"Wrong answer \nScore:" + score + "  Level:" + level + "\nBest level: " + bestLevel , Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Неправильный ответ \nСчет:" + score + "  Уровень:" + level + "\nЛучший уровень: " + bestLevel , Toast.LENGTH_LONG).show();
 
                 return false;
             }
@@ -178,10 +185,10 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
                     clear();
                     refresh();
                     break;
-                case (R.id.button):
+                /*case (R.id.back):
                     lol=false;
                     finish();
-                    break;
+                    break;*/
             }
         }
 
@@ -239,4 +246,13 @@ public class Guess_signsActivity extends AppCompatActivity implements View.OnCli
                     break;
             }
         }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     }

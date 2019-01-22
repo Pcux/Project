@@ -24,7 +24,9 @@
         <activity android:name=".CreateActivity" />
         <activity android:name=".Guess_signsActivity" />
         <activity android:name=".Choose_CorrectActivity" />
-        <activity android:name=".MathMincerActivity"></activity>
+        <activity android:name=".MathMincerActivity" />
+        <activity android:name=".RulesActivity" />
+        <activity android:name=".RoomActivity"></activity>
     </application>
 
 </manifest>

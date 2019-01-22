@@ -1,7 +1,10 @@
 package com.example.belka.progaosnova;
 
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,6 +21,7 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
     int bestLevel=0;
     boolean pop=false;
     boolean lol=true;
+    boolean bag=true;
     Button buttonObjectChoice1;
     Button buttonObjectChoice2;
     Button buttonObjectChoice3;
@@ -33,6 +37,7 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_correct);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         textObjectPartA = (TextView)findViewById(R.id.textPartA);
         textObjectPartB = (TextView)findViewById(R.id.textPartB);
@@ -41,9 +46,11 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
         buttonObjectChoice1 = (Button)findViewById(R.id.buttonChoice1);
         buttonObjectChoice2 = (Button)findViewById(R.id.buttonChoice2);
         buttonObjectChoice3 = (Button)findViewById(R.id.buttonChoice3);
-        Button button = (Button)findViewById(R.id.button);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        button.setOnClickListener(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Выбери правильный ответ");
         buttonObjectChoice1.setOnClickListener(this);
         buttonObjectChoice2.setOnClickListener(this);
         buttonObjectChoice3.setOnClickListener(this);
@@ -69,14 +76,17 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
             case R.id.buttonChoice3:
                 answerGiven = Integer.parseInt("" + buttonObjectChoice3.getText());
                 break;
-            case R.id.button:
+            /*case R.id.back:
                 finish();
                 lol=false;
-                break;
+                bag=false;
+                break;*/
 
         }
-        updateScoreAndLevel(answerGiven);
-        setQuestion();
+        if (bag) {
+            updateScoreAndLevel(answerGiven);
+            setQuestion();
+        }
     }
 
     void setQuestion(){
@@ -162,15 +172,23 @@ public class Choose_CorrectActivity extends AppCompatActivity implements View.On
            correctTrueOrFalse=true;
         }else{
             if(pop && lol)
-                Toast.makeText(getApplicationContext(), "Wrong answer \nScore:" + currentScore + "  Level: " + currentLevel + "\nCongratulations! This is the best result of the session", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Неправильный ответ \nСчет:" + currentScore + "  Уровень: " + currentLevel + "\nПоздравляю! это лучший результат за сессию", Toast.LENGTH_LONG).show();
             else if (lol)
-                Toast.makeText(getApplicationContext(), "Wrong answer \nScore:" + currentScore + "  Level: " + currentLevel + "\nBest level: " + bestLevel, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Неправильный ответ \nСчет:" + currentScore + "  Уровень: " + currentLevel + "\nЛучший уровень: " + bestLevel, Toast.LENGTH_LONG).show();
             correctTrueOrFalse=false;
             pop=false;
         }
 
         return correctTrueOrFalse;
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 

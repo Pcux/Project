@@ -4,135 +4,144 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BBBBBB">
+    android:background="@drawable/single"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/gstvdl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
         android:layout_marginEnd="12dp"
         android:text="2"
-        android:textSize="35sp"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/gnrg2"
         app:layout_constraintEnd_toStartOf="@+id/gstvsl"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <TextView
         android:id="@+id/gstvsl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
         android:layout_marginEnd="12dp"
         android:text="+"
-        android:textSize="35sp"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/gnrg2"
         app:layout_constraintEnd_toStartOf="@+id/gstvdm"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <TextView
         android:id="@+id/gstvdm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
         android:layout_marginEnd="12dp"
         android:text="2"
-        android:textSize="35sp"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/gnrg2"
         app:layout_constraintEnd_toStartOf="@+id/gstvsr"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <TextView
         android:id="@+id/gstvsr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="1dp"
         android:text="*"
-        android:textSize="35sp"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/gnrg2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <TextView
         android:id="@+id/gstvdr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="80dp"
         android:text="2"
-        android:textSize="35sp"
+        android:textColor="#000000"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/gnrg4"
         app:layout_constraintStart_toEndOf="@+id/gstvsr"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <TextView
         android:id="@+id/gstvequals"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="80dp"
         android:text="="
-        android:textSize="35sp"
+        android:textColor="#000000"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/gnrg2"
         app:layout_constraintStart_toEndOf="@+id/gstvdr"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <TextView
         android:id="@+id/gstvda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="80dp"
         android:text="6"
-        android:textSize="35sp"
+        android:textColor="#000000"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/gnrg2"
         app:layout_constraintStart_toEndOf="@+id/gstvequals"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
     <Button
-        style="@style/ButtonStyle"
         android:id="@+id/tmpb"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
-        android:text="answer"
+        android:padding="6dp"
+        android:text="ответить"
+        app:layout_constraintBottom_toTopOf="@+id/textScore"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gstvsr" />
+        app:layout_constraintTop_toBottomOf="@+id/gnrg2" />
 
     <RadioGroup
         android:id="@+id/gnrg2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        app:layout_constraintBottom_toTopOf="@+id/tmpb"
         app:layout_constraintEnd_toStartOf="@+id/gnrg4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/gstvdl">
 
         <RadioButton
             android:id="@+id/gnrg21"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gsrbtextplus"
-            android:textSize="25sp" />
+            android:textSize="30dp" />
 
         <RadioButton
             android:id="@+id/gnrg22"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gsrbtextminus"
-            android:textSize="25sp" />
+            android:textSize="30dp" />
 
         <RadioButton
             android:id="@+id/gnrg23"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gsrbtextmul"
-            android:textSize="25sp" />
+            android:textSize="30dp" />
 
         <RadioButton
             android:id="@+id/gnrg24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gsrbtextdiv"
-            android:textSize="25sp" />
+            android:textSize="30dp" />
     </RadioGroup>
 
 
@@ -140,51 +149,53 @@
         android:id="@+id/gnrg4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        app:layout_constraintBottom_toTopOf="@+id/tmpb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/gnrg2"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/gstvequals">
 
         <RadioButton
             android:id="@+id/gnrg41"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gsrbtextplus"
-            android:textSize="25sp" />
+            android:textSize="30dp" />
 
         <RadioButton
             android:id="@+id/gnrg42"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gsrbtextminus"
-            android:textSize="25sp" />
+            android:textSize="30dp" />
 
         <RadioButton
             android:id="@+id/gnrg43"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gsrbtextmul"
-            android:textSize="25sp" />
+            android:textSize="30dp" />
 
         <RadioButton
             android:id="@+id/gnrg44"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/gsrbtextdiv"
-            android:textSize="25sp" />
+            android:textSize="30dp" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/textScore"
-        android:layout_width="87dp"
-        android:layout_height="34dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Score: 0"
         android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.266"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -194,14 +205,16 @@
 
     <TextView
         android:id="@+id/textLevel"
-        android:layout_width="88dp"
-        android:layout_height="34dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:text="Level: 0"
         android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.739"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -209,11 +222,21 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.958" />
 
-    <Button
-        style="@style/BackStyle"
-        android:id="@+id/button"
-        android:text="Back"
-        android:textSize="15sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:textAlignment="4"
+        android:textDirection="5">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#3366CC">
+
+
+        </android.support.v7.widget.Toolbar>
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -1,7 +1,10 @@
 package com.example.belka.progaosnova;
 
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -25,10 +28,13 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
     int bestLevel = 1;
     boolean pop=false;
     boolean lol=true;
+    boolean bag=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yesorno);
+        setRequestedOrientation (ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         textObjectPartA = (TextView)findViewById(R.id.textViewA);
         textObjectPartB = (TextView)findViewById(R.id.textViewB);
         textObjectScore = (TextView)findViewById(R.id.textScore);
@@ -37,9 +43,11 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
         textObjectAnswer = (TextView)findViewById(R.id.textViewAns);
         buttonNo = (Button)findViewById(R.id.buttonNo);
         buttonYes = (Button)findViewById(R.id.buttonYes);
-        Button button = (Button)findViewById(R.id.button);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        button.setOnClickListener(this);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Правда или ложь?");
         buttonYes.setOnClickListener(this);
         buttonNo.setOnClickListener(this);
 
@@ -68,13 +76,25 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
                 }
                 else buttof = false;
                 break;
-            case R.id.button:
+            /*case R.id.back:
                 finish();
                 lol=false;
+                bag=false;
+                break;*/
+        }
+        if (bag) {
+            updateScoreAndLevel(buttof);
+            setQuestion();
+        }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
                 break;
         }
-        updateScoreAndLevel(buttof);
-        setQuestion();
+        return super.onOptionsItemSelected(item);
     }
 
     void setQuestion() {
@@ -134,10 +154,10 @@ public class YesornoActivity extends AppCompatActivity implements View.OnClickLi
         }
         else{
             if (pop && lol) {
-                Toast.makeText(getApplicationContext(), "Wrong answer \nScore:" + currentScore + "  Level:" + currentLevel + "\nCongratulations! This is the best result of the session", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Неправильный ответ \nСчет:" + currentScore + "  Уровень:" + currentLevel + "\nПоздравляю! это лучший результат за сессию", Toast.LENGTH_LONG).show();
             }
             else if (lol)
-                Toast.makeText(getApplicationContext(), "Wrong answer \nScore:" + currentScore + "  Level:" + currentLevel + "\nBest level: " + bestLevel, Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Неправильный ответ \nСчет:" + currentScore + "  Уровень:" + currentLevel + "\nЛучший уровень: " + bestLevel, Toast.LENGTH_LONG).show();
             pop=false;
             currentScore = 0;
             currentLevel = 1;
