@@ -128,6 +128,7 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         questionView.nextProblem(num,problems[numProblems[num]][0]);
         questionView.setCallback(this);
         toSocket();
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -154,7 +155,9 @@ public  void UpdateTable(){
         socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
             @Override
             public void call(Object... objects) {
-                socket.emit("message", namePlayer, "0 0 1 0 1 0 1 0 1 1");
+                //socket.emit("message", namePlayer, "0 0 1 0 1 0 1 0 1 1");
+                String tableToSocket = encode();
+                socket.emit("message",namePlayer, tableToSocket);
                 Log.d("socket", Socket.EVENT_CONNECT);
             }
         }).on("event", new Emitter.Listener() {
@@ -223,6 +226,24 @@ boolean bol=false;
             numProblems[k]=l;
         }
     }
-
+public String encode() {
+        String result="";
+        for (int i=0; i<nplayers;i++)
+            for (int j=0; j<nplayers;j++)
+            {
+                result=(grid.cells.get(i).get(j).getText()=="")?result+"0 ":result+(grid.cells.get(i).get(j).getText()+" ");
+            }
+            return result;
+}
+    public void decode(String ss) {
+        char[] s=ss.toCharArray();
+        int c1=0;
+        int c2=0;
+        for(int i=0;i<ss.length();i+=2){
+            grid.cells.get(c1).get(c2++).setText(s[i]);
+            if (c2>nplayers){c2=0; c1++;}
+        }
+        UpdateTable();
+    }
 
 }

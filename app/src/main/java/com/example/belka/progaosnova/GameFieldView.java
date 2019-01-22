@@ -21,7 +21,7 @@ public class GameFieldView extends GridLayout{
     public String TAG = this.getClass().getSimpleName();
 
 
-    private List<List<GameCellView>> cells= new ArrayList<>(5);
+    public List<List<GameCellView>> cells= new ArrayList<>(5);
     private int spaceBetweenCells = 0;
 
     // обязательно нужно реализовать как минимум 3 конструктора для кастомных вьюх
