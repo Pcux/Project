@@ -24,7 +24,7 @@ import java.util.Random;
 public class GameFieldView extends GridLayout{
 
     public String TAG = this.getClass().getSimpleName();
-
+    Integer points=0;
 
     public List<List<GameCellView>> cells= new ArrayList<>();
     private int spaceBetweenCells = 0;
@@ -259,6 +259,7 @@ public class GameFieldView extends GridLayout{
     Integer MoveTo(Integer id1,Integer id2, Integer p){
         String text=cells.get(id1/10).get(id1%10).getText().toString();
         if (!cells.get(id2/10).get(id2%10).getText().toString().equals("")){
+            if(cells.get(id2/10).get(id2%10).getText().toString().equals(""))
             Respawn(id2);
         }
         cells.get(id1/10).get(id1%10).setText("");

@@ -182,11 +182,12 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
                 String s = new String();
                 s = (String) args[0];
                 if(s.equals("number")){
-                    nplayer=(int)args[1];
+                    int er=(int)args[1];
+                    nplayer=er+1;
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            questionView.nextProblem(1, nplayer.toString());
+                            //questionView.nextProblem(1, nplayer.toString());
                         }
                     });
                 } else {
