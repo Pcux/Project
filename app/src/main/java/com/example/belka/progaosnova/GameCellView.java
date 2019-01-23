@@ -35,18 +35,16 @@ public class GameCellView extends AppCompatTextView {
 
 
     public void init(MyAnimationListener al) {
-        this.al=new MyAnimationListener();
-        this.al.Init(this,0);
         setText("");
         setGravity(Gravity.CENTER);
         colorBackground();
     }
-    MyAnimationListener al;
-    public void toggle(AnimationSet as,Integer state) {
+    public void toggle(Integer state) {
         ifSelected = !ifSelected;
-        al.Init(this,state);
-        as.setAnimationListener(al);
-        this.startAnimation(as);
+        colorBackground();
+        // al.Init(this,state);
+        //as.setAnimationListener(al);
+        //this.startAnimation(as);
 
     }
 

@@ -46,12 +46,12 @@ public class GameFieldView extends GridLayout{
     AnimationSet as1;
     Context ctxt;
     public void SetAnimations(){
-        as1= new AnimationSet(true);
-        as1.setInterpolator(new AccelerateDecelerateInterpolator());
-        AlphaAnimation aa = new AlphaAnimation((float)1.0,(float)0.1);
-        aa.setDuration(700);
-        aa.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
-        as1.addAnimation(aa);
+        //as1= new AnimationSet(true);
+        //as1.setInterpolator(new AccelerateDecelerateInterpolator());
+        //AlphaAnimation aa = new AlphaAnimation((float)1.0,(float)0.1);
+        //aa.setDuration(1);
+        //aa.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
+        //as1.addAnimation(aa);
     }
     //Socket socket;
     Integer nplayers;
@@ -61,7 +61,7 @@ public class GameFieldView extends GridLayout{
         this.callback=callback;
         this.nplayers=nplayers;
         //this.socket=socket;
-        SetAnimations();
+        //SetAnimations();
 
 
         // добавляем наше ячейки только когда рассчиталась основная разметка, так как до этого
@@ -215,7 +215,7 @@ public class GameFieldView extends GridLayout{
             {
                 SetAnimations();
                 if(Math.abs(id/10-i)+Math.abs(id%10-j)<=points){
-                    cells.get(i).get(j).toggle(as1,0);
+                    cells.get(i).get(j).toggle(0);
                 }
             }
     }
@@ -227,7 +227,7 @@ public class GameFieldView extends GridLayout{
                 if(Math.abs(id/10-i)+Math.abs(id%10-j)<=points)
                 {
                     SetAnimations();
-                    cells.get(i).get(j).toggle(as1,0);
+                    cells.get(i).get(j).toggle(0);
                 }
             }
     }

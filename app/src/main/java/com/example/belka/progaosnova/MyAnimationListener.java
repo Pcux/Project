@@ -25,10 +25,10 @@ public class MyAnimationListener implements Animation.AnimationListener {
         AnimationSet as1= new AnimationSet(true);
             as1.setInterpolator(new AccelerateDecelerateInterpolator());
             AlphaAnimation aa = new AlphaAnimation((float)0.1,(float)1.0);
-            aa.setDuration(0);
+            aa.setDuration(1);
             aa.setBackgroundColor(parent.getResources().getColor(android.R.color.holo_blue_bright));
             as1.addAnimation(aa);
-            parent.toggle(as1,2);}else {
+            parent.toggle(2);}else {
             if (state == 2) {
                 parent.setAlpha((float) 1.0);
                 this.state = 0;
