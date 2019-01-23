@@ -25,7 +25,7 @@ public class MyAnimationListener implements Animation.AnimationListener {
         AnimationSet as1= new AnimationSet(true);
             as1.setInterpolator(new AccelerateDecelerateInterpolator());
             AlphaAnimation aa = new AlphaAnimation((float)0.1,(float)1.0);
-            aa.setDuration(700);
+            aa.setDuration(0);
             aa.setBackgroundColor(parent.getResources().getColor(android.R.color.holo_blue_bright));
             as1.addAnimation(aa);
             parent.toggle(as1,2);}else {
