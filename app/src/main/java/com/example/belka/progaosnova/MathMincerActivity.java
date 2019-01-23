@@ -36,7 +36,7 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
     int[][] statistic = new int[5][3];
     int[][] table = new int[5][5];
     int[] temp = new int[25];
-    String namePlayer = "Egor";
+    String namePlayer = "Kostya";
     Socket socket;
     GameFieldView.Callback cbk=new GameFieldView.Callback() {
         @Override
@@ -169,6 +169,7 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
             @Override
             public void call(Object... objects) {
                 //socket.emit("message", namePlayer, "0 0 1 0 1 0 1 0 1 1");
+                //socket.emit("joinRoom", namePlayer);
                 String tableToSocket = encode();
                 socket.emit("message",namePlayer, tableToSocket);
                 Log.d("socket", Socket.EVENT_CONNECT);
@@ -183,6 +184,17 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
                 Log.d("socket", Socket.EVENT_DISCONNECT);
             }
 
+        }).on("gameStart", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                String s = (String) args[0];
+                decode(s);
+            }
+        }).on("finish", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                editText.setText("finish"); // это конец просто от него ивент по которому тип все
+            }
         }).on("message", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
