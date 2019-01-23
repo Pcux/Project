@@ -19,6 +19,21 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:background="#3366CC">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Score: "
+                android:id="@+id/notScore">
+            </TextView>
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:id="@+id/Score">
+            </TextView>
             <!--<TextView-->
             <!--android:id="@+id/back"-->
             <!--android:layout_width="40dp"-->
@@ -50,7 +65,7 @@
         <com.example.belka.progaosnova.ScoreActivity
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/Score">
+            android:id="@+id/Scoreactiv">
 
         </com.example.belka.progaosnova.ScoreActivity>
         <com.example.belka.progaosnova.GameFieldView

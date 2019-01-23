@@ -11,6 +11,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.AnimationSet;
 import android.view.animation.Interpolator;
 import android.widget.GridLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.nkzawa.emitter.Emitter;
@@ -27,8 +28,17 @@ public class GameFieldView extends GridLayout{
 
 
     public List<List<GameCellView>> cells= new ArrayList<>();
+    AnimationSet as1;
+    Context ctxt;
+    //Socket socket;
+    Integer nplayers;
+    Integer nplayer;
+    Callback callback;
+    Integer state=0;
+    Integer p=100;
+    Random r= new Random();
+    Integer lastid=0;
     private int spaceBetweenCells = 0;
-
     // обязательно нужно реализовать как минимум 3 конструктора для кастомных вьюх
     public GameFieldView(Context context) {
         super(context);
@@ -39,13 +49,11 @@ public class GameFieldView extends GridLayout{
         super(context, attrs);
         ctxt=context;
     }
-
     public GameFieldView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         ctxt=context;
     }
-    AnimationSet as1;
-    Context ctxt;
+
     public void SetAnimations(){
         //as1= new AnimationSet(true);
         //as1.setInterpolator(new AccelerateDecelerateInterpolator());
@@ -54,10 +62,7 @@ public class GameFieldView extends GridLayout{
         //aa.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
         //as1.addAnimation(aa);
     }
-    //Socket socket;
-    Integer nplayers;
-    Integer nplayer;
-    Callback callback;
+
     public void init(final Callback callback, final Integer nplayers, Integer nplayer) {
         setAlignmentMode(GridLayout.ALIGN_BOUNDS);
         this.callback=callback;
@@ -164,6 +169,7 @@ public class GameFieldView extends GridLayout{
     public void setRowCount(int rowCount) {
         // переопределяем этот метод, чтобы нельзя было задать кол-во строк
     }
+
     public String encode() {
         String result="";
         for (int i=0; i<getRowCount();i++)
@@ -173,6 +179,7 @@ public class GameFieldView extends GridLayout{
             }
         return result;
     }
+
     @Override
     public void setColumnCount(int columnCount) {
         // переопределяем этот метод, чтобы нельзя было задать кол-во столбцов
@@ -195,23 +202,23 @@ public class GameFieldView extends GridLayout{
         spaceBetweenCells = space;
     }
 
-
-
-    Integer state=0;
-    Integer p=1;
     public void setstate(int state){
         this.state=state;
     }
+
     public void setpoints(int points){
         if (state!=1)
         this.p=points;
     }
+
     public int getstate(){
         return state;
     }
+
     public int getpoints(){
         return p;
     }
+
     boolean ShowOptionsFor(Integer id,Integer points){
         if(cells.get(id/10).get(id%10).getText().toString().equals(((Integer)nplayer).toString())){
         for (int i=0;i<getRowCount();i++)
@@ -242,8 +249,9 @@ public class GameFieldView extends GridLayout{
                 }
             }
     }
-    Random r= new Random();
+
     void Respawn(Integer id){
+
         boolean bol=true;
         int x=0;
         int y=0;
@@ -253,23 +261,31 @@ public class GameFieldView extends GridLayout{
             if (cells.get(x).get(y).getText().equals("")){cells.get(x).get(y).setText(cells.get(id/10).get(id%10).getText()); bol=false;}
         }
     }
+
     boolean CanMove(Integer id1,Integer id2,Integer p){
         return ((Math.abs(id1/10-id2/10)+Math.abs(id1%10-id2%10)<=p)&&(!(id1.equals(id2))));
     }
+
     Integer MoveTo(Integer id1,Integer id2, Integer p){
         String text=cells.get(id1/10).get(id1%10).getText().toString();
         if (!cells.get(id2/10).get(id2%10).getText().toString().equals("")){
+            if (cells.get(id1 / 10).get(id1 % 10).getText().toString().equals(nplayer.toString())) {
+                    callback.upTheScore();
+
+//                ((TextView)findViewById(R.id.Score)).setText(((Integer)(Integer.valueOf(((TextView) findViewById(R.id.Score)).getText().toString().charAt(0))+1)).toString());
+            }
             Respawn(id2);
         }
         cells.get(id1/10).get(id1%10).setText("");
         cells.get(id2/10).get(id2%10).setText(text);
         return p-(Math.abs(id1/10-id2/10)+Math.abs(id1%10-id2%10));
     }
+
     boolean CheckFishka(Integer id1){
         return !cells.get(id1/10).get(id1%10).getText().toString().equals("");
     }
-    Integer lastid=0;
     interface Callback{
         public void emits(String gameFieldState );
+        public void upTheScore();
     }
 }

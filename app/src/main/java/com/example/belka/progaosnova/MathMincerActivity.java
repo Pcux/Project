@@ -29,7 +29,7 @@ import java.util.Random;
 public class MathMincerActivity extends AppCompatActivity implements View.OnClickListener, QuestionView.Callback{
 
     int nplayers=2;
-    Integer nplayer=0;
+    Integer nplayer=1;
     EditText editText;
     int num = 0;
     QuestionView questionView;
@@ -45,9 +45,21 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         public void emits(String gameFieldState) {
             socket.emit("message",MathMincerActivity.this.namePlayer,gameFieldState);
         }
+
+        @Override
+        public void upTheScore() {
+            TextView txtv = findViewById(R.id.Score);
+            Integer val =(Integer.valueOf((txtv).getText().toString()
+            ));
+            txtv.setText(new Integer(val+1).toString());
+        }
     };
 
     GameFieldView grid;
+    int n=0;
+    int l=2;
+    boolean problemsEnd = true;
+boolean bol=false;
 
     /*MyGestureDetectorCompat gd;
     MyOnGestureListener gl;*/
@@ -211,9 +223,6 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
 
         }
     }
-    int n=0;
-    int l=2;
-    boolean problemsEnd = true;
 
     @Override
     public void checkAnswer(Integer num, String ans) {
@@ -242,7 +251,7 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
             socket.emit("message",namePlayer,"ProblemsOffTheEndGame");
         }
     }
-boolean bol=false;
+
     public void randomListProblems() {
         Random rand = new Random();
         for (int i=0;i<16;i++) {
