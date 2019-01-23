@@ -55,11 +55,13 @@ public class GameFieldView extends GridLayout{
     }
     //Socket socket;
     Integer nplayers;
+    Integer nplayer;
     Callback callback;
-    public void init(final Callback callback, final Integer nplayers) {
+    public void init(final Callback callback, final Integer nplayers, Integer nplayer) {
         setAlignmentMode(GridLayout.ALIGN_BOUNDS);
         this.callback=callback;
         this.nplayers=nplayers;
+        this.nplayer=nplayer;
         //this.socket=socket;
         //SetAnimations();
 
@@ -91,7 +93,7 @@ public class GameFieldView extends GridLayout{
                                     case 0:
                                         if (CheckFishka(view.getId()))
                                             if (p>0) {
-                                                ShowOptionsFor(view.getId(), p);
+                                                if(!ShowOptionsFor(view.getId(), p)) return;
                                                 lastid=view.getId();
                                                 state++;
                                             }
@@ -208,8 +210,8 @@ public class GameFieldView extends GridLayout{
     public int getpoints(){
         return p;
     }
-    void ShowOptionsFor(Integer id,Integer points){
-
+    boolean ShowOptionsFor(Integer id,Integer points){
+        if(cells.get(id/10).get(id%10).getText().toString().equals(((Integer)nplayer).toString())){
         for (int i=0;i<getRowCount();i++)
             for (int j=0;j<getRowCount();j++)
             {
@@ -217,7 +219,13 @@ public class GameFieldView extends GridLayout{
                 if(Math.abs(id/10-i)+Math.abs(id%10-j)<=points){
                     cells.get(i).get(j).toggle(0);
                 }
-            }
+            };
+        return true;
+        }
+        else {
+        return false;
+        }
+
     }
 
     void HideOptionsFor(Integer id,Integer points){
@@ -243,7 +251,7 @@ public class GameFieldView extends GridLayout{
         }
     }
     boolean CanMove(Integer id1,Integer id2,Integer p){
-        return (Math.abs(id1/10-id2/10)+Math.abs(id1%10-id2%10)<=p)&&(!(id1.equals(id2)));
+        return ((Math.abs(id1/10-id2/10)+Math.abs(id1%10-id2%10)<=p)&&(!(id1.equals(id2))));
     }
     Integer MoveTo(Integer id1,Integer id2, Integer p){
         String text=cells.get(id1/10).get(id1%10).getText().toString();

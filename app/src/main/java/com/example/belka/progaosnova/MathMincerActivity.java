@@ -29,6 +29,7 @@ import java.util.Random;
 public class MathMincerActivity extends AppCompatActivity implements View.OnClickListener, QuestionView.Callback{
 
     int nplayers=2;
+    Integer nplayer=0;
     EditText editText;
     int num = 0;
     QuestionView questionView;
@@ -37,7 +38,7 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
     int[][] statistic = new int[5][3];
     int[][] table = new int[5][5];
     int[] temp = new int[25];
-    String namePlayer = "Kostya";
+    String namePlayer;
     Socket socket;
     GameFieldView.Callback cbk=new GameFieldView.Callback() {
         @Override
@@ -55,12 +56,15 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_math_mincer);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        namePlayer = getIntent().getStringExtra(MainActivity.KEY_PLAYER_NAME);
+        Toast.makeText(this, "Привет, " + namePlayer, Toast.LENGTH_SHORT).show();
         try {
             //btn = findViewById(R.id.button);
             grid = findViewById(R.id.grid);
             //score = findViewById(R.id.Score);
             //score.setVisibility(View.INVISIBLE);
-            grid.init(cbk,nplayers);
+            grid.init(cbk,nplayers,nplayer);
             // наслаждаемся API нашей вьюхи
             grid.setSideCount(5);
             grid.setSpaceBetweenCells(8);
@@ -85,12 +89,15 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Мат. мясорубка");
+            getSupportActionBar().setTitle("Матем. мясорубка");
         } catch (Exception e) {
             System.out.println('e');
         }
         // итого в MainActivity минимум кода, осталась только бизнес логика, то есть кол-во ячеек
         // и кнопка с переключение ячеек, все остальное инкапсулировано в специализированные классы
+
+        Button button = (Button)findViewById(R.id.buttonOt);
+        button.setOnClickListener(this);
 
         problems[0][0] = "Найдите сумму коэффициентов при чётных степенях в многочлене, который получается из выражения  f(x)=(x^3 – x + 1)^100  в результате раскрытия скобок.";
         problems[0][1] = "1";
@@ -134,6 +141,7 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         questionView = findViewById(R.id.questionView);
         questionView.nextProblem(num,problems[numProblems[num]][0]);
         questionView.setCallback(this);
+
         toSocket();
 
 
@@ -154,12 +162,6 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         return super.onOptionsItemSelected(item);
     }
 
-/*public  void UpdateTable(){
-        for (int i=0; i<nplayers; i++)
-            for(int j=0; j<nplayers; j++){
-                grid.UpdateCell(i,j, ( (Integer) table[i][j]).toString());
-            }
-}*/
    public void toSocket() {
         try {
             socket = IO.socket("http://95.163.181.238:80");
@@ -206,13 +208,18 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
             public void call(Object... args) {
                 String s = new String();
                 s = (String) args[0];
-//                editText.setText(s);
-                Log.d("updateTable", s);
-                decode(s);
-//                  for (int i = 0; i < nplayers; i++)
-//                    for (int j = 0; j < nplayers; j++) {
-//                        table[i][j] = (int) args[0];
-//                    }
+                if(s.equals("number")){
+                    nplayer=(int)args[1];
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            questionView.nextProblem(1, nplayer.toString());
+                        }
+                    });
+                } else {
+                    Log.d("updateTable", s);
+                    decode(s);
+                }
             }
         });
         socket.connect();
@@ -228,12 +235,16 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
                     bol=!bol;
                 }
                 break;
+
         }
     }
     int n=0;
     int l=2;
     boolean problemsEnd = true;
+
+    @Override
     public void checkAnswer(Integer num, String ans) {
+        Log.d("TAG1", "checkAnswer " + num + " " + ans);
         if(problems[numProblems[num]][1].equals(ans)&&problemsEnd){
             grid.setpoints(l);
             l=2;

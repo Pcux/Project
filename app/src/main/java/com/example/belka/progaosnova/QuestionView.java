@@ -15,6 +15,7 @@ public class QuestionView extends ConstraintLayout {
     Callback callback;
     Button buttonOt;
     EditText editText;
+    int num;
 
     public QuestionView(Context context) {
         super(context);
@@ -43,18 +44,15 @@ public class QuestionView extends ConstraintLayout {
             }
         });
     }
-    int num;
+
     public void nextProblem(Integer num, String s){
         textView.setText(s);
         this.num=num;
     }
 
-
     public void setCallback(Callback callback) {
         this.callback = callback;
     }
-
-
 
     public interface Callback {
         public void checkAnswer(Integer num, String ans);
