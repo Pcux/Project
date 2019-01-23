@@ -11,6 +11,7 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.AnimationSet;
 import android.view.animation.Interpolator;
 import android.widget.GridLayout;
+import android.widget.Toast;
 
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
@@ -93,7 +94,8 @@ public class GameFieldView extends GridLayout{
                                     case 0:
                                         if (CheckFishka(view.getId()))
                                             if (p>0) {
-                                                if(!ShowOptionsFor(view.getId(), p)) return;
+                                                if(!ShowOptionsFor(view.getId(), p)){
+                                                    return;};
                                                 lastid=view.getId();
                                                 state++;
                                             }
@@ -223,6 +225,7 @@ public class GameFieldView extends GridLayout{
         return true;
         }
         else {
+          //  Toast.makeText(getContext(),((Integer)nplayer).toString()+" "+cells.get(id/10).get(id%10).getText().toString(), Toast.LENGTH_SHORT).show();
         return false;
         }
 
