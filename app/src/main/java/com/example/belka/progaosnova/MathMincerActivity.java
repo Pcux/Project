@@ -60,32 +60,10 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         namePlayer = getIntent().getStringExtra(MainActivity.KEY_PLAYER_NAME);
         Toast.makeText(this, "Привет, " + namePlayer, Toast.LENGTH_SHORT).show();
         try {
-            //btn = findViewById(R.id.button);
             grid = findViewById(R.id.grid);
-            //score = findViewById(R.id.Score);
-            //score.setVisibility(View.INVISIBLE);
             grid.init(cbk,nplayers,nplayer);
-            // наслаждаемся API нашей вьюхи
             grid.setSideCount(5);
             grid.setSpaceBetweenCells(8);
-            //gl = new MyOnGestureListener(R.id.Score,getApplicationContext(),this);
-            //gd = new MyGestureDetectorCompat(getApplicationContext(),gl);
-            //gd.Init(gl);
-            /*View.OnTouchListener touchListener = new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    // pass the events to the gesture detector
-                    // a return value of true means the detector is handling it
-                    // a return value of false means the detector didn't
-                    // recognize the event
-                    try{
-                        return gd.onTouchEvent(event);} catch (Exception e){
-                        e.getMessage();
-                    }
-                    return gd.onTouchEvent(event);
-
-                }};
-            grid.setOnTouchListener(touchListener);*/
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -93,11 +71,6 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         } catch (Exception e) {
             System.out.println('e');
         }
-        // итого в MainActivity минимум кода, осталась только бизнес логика, то есть кол-во ячеек
-        // и кнопка с переключение ячеек, все остальное инкапсулировано в специализированные классы
-
-        Button button = (Button)findViewById(R.id.buttonOt);
-        button.setOnClickListener(this);
 
         problems[0][0] = "Найдите сумму коэффициентов при чётных степенях в многочлене, который получается из выражения  f(x)=(x^3 – x + 1)^100  в результате раскрытия скобок.";
         problems[0][1] = "1";
@@ -313,6 +286,5 @@ public String encode() {
             }
         });
     }
-        //UpdateTable();
     }
 
