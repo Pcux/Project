@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.nkzawa.emitter.Emitter;
@@ -193,7 +194,12 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         }).on("finish", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
-                editText.setText("finish"); // это конец просто от него ивент по которому тип все
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        questionView.nextProblem(1, "Игра закончилась. Результаты");
+                    }
+                });
             }
         }).on("message", new Emitter.Listener() {
             @Override
@@ -249,6 +255,7 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         if (num>=15) {
             problemsEnd = false;
             questionView.nextProblem( 0, "Задачи закончились. Дождитесь конца игры.");
+            socket.emit("message",namePlayer,"ProblemsOffTheEndGame");
         }
     }
 boolean bol=false;
