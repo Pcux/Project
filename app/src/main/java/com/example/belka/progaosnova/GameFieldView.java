@@ -143,7 +143,6 @@ public class GameFieldView extends GridLayout{
                 for(i = 0;i<size;i++){
                     for (int j=0; j<size; j++){
                         cells.get(i).get(j).init();
-                        //cells.get(i).get(j).setMyfishka(cells.get(i).get(j).getText().toString().equals(nplayer.toString()));
                     }
                 }
                     i=0;
@@ -153,8 +152,6 @@ public class GameFieldView extends GridLayout{
                     if (cells.get(x).get(y).getText()=="") {
                         cells.get(x).get(y).setText(new Integer(i+1).toString()); i++;}
                 }
-
-
             }
             });
     }
@@ -276,6 +273,7 @@ public class GameFieldView extends GridLayout{
         }
         cells.get(id1/10).get(id1%10).setText("");
         cells.get(id2/10).get(id2%10).setText(text);
+                this.callback.setmyf();
         return p-(Math.abs(id1/10-id2/10)+Math.abs(id1%10-id2%10));
     }
 
@@ -286,5 +284,6 @@ public class GameFieldView extends GridLayout{
         public void emits(String gameFieldState );
         public void upTheScore();
         public Integer getnplayer();
+        public void setmyf();
     }
 }

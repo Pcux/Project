@@ -23,16 +23,16 @@ public class GameCellView extends AppCompatTextView {
         super(context, attrs, defStyleAttr);
     }
 
-//boolean myfishka=false;
+boolean myfishka=false;
     public void init() {
         setText("");
         setGravity(Gravity.CENTER);
         colorBackground();
     }
-   // public void setMyfishka(boolean myfishka){
- //       this.myfishka=myfishka;
- //       colorBackground();
- //   }
+    public void setMyfishka(boolean myfishka){
+        this.myfishka=myfishka;
+        colorBackground();
+    }
     public void toggle(Integer state) {
         ifSelected = !ifSelected;
         colorBackground();
@@ -43,13 +43,12 @@ public class GameCellView extends AppCompatTextView {
     }
 
      void colorBackground() {
- //       if(!myfishka){
+        if(!myfishka){
         if (ifSelected) setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
-        else setBackgroundColor(getResources().getColor(android.R.color.holo_blue_light));
-    //}
-  //      else
-  //      {
-   //         setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
-  //     }
+        else setBackgroundColor(getResources().getColor(android.R.color.holo_blue_light));}
+        else
+        {
+            setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
+        }
     }
 }

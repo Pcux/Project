@@ -57,6 +57,15 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
             //Toast.makeText(getApplicationContext(), nplayer.toString(), Toast.LENGTH_SHORT).show();
             return nplayer;
         }
+
+        @Override
+        public void setmyf() {
+            for (int i=0;i<grid.getRowCount();i++) {
+                for (int j=0;j<grid.getRowCount();j++) {
+                    grid.cells.get(i).get(j).setMyfishka(grid.cells.get(i).get(j).getText().toString().equals(nplayer.toString()));
+                }
+            }
+        }
     };
 
     GameFieldView grid;
@@ -192,6 +201,12 @@ boolean bol=false;
                 if(s.equals("number")){
                     //Log.d("TAG1", "string = " + s);
                     nplayer = Integer.valueOf(args[1].toString())+1;
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            cbk.setmyf();
+                        }
+                    });
                     //Log.d("TAG1", "nplayer = " + nplayer);
                 }else if (s.equals("startGame")) {
                     String nm = (String) args[1];
@@ -219,6 +234,12 @@ boolean bol=false;
                 else {
                     Log.d("updateTable", s);
                     decode(s);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            cbk.setmyf();
+                        }
+                    });
                 }
             }
         });
