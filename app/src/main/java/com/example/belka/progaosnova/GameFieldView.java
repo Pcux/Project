@@ -54,17 +54,13 @@ public class GameFieldView extends GridLayout{
         //aa.setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
         //as1.addAnimation(aa);
     }
-    //Socket socket;
     Integer nplayers;
-    Integer nplayer;
+    Integer nplayer = 0;
     Callback callback;
-    public void init(final Callback callback, final Integer nplayers, Integer nplayer) {
+    public void init(final Callback callback, final Integer nplayers/*, Integer nplayer*/) {
         setAlignmentMode(GridLayout.ALIGN_BOUNDS);
         this.callback=callback;
         this.nplayers=nplayers;
-        this.nplayer=nplayer;
-        //this.socket=socket;
-        //SetAnimations();
 
 
         // добавляем наше ячейки только когда рассчиталась основная разметка, так как до этого
@@ -213,7 +209,9 @@ public class GameFieldView extends GridLayout{
         return p;
     }
     boolean ShowOptionsFor(Integer id,Integer points){
-        if(cells.get(id/10).get(id%10).getText().toString().equals(((Integer)nplayer).toString())){
+        nplayer = callback.getnplayer();
+        //Toast.makeText(getContext(), nplayer.toString(), Toast.LENGTH_SHORT).show();
+        if(cells.get(id/10).get(id%10).getText().toString().equals(nplayer.toString())){
         for (int i=0;i<getRowCount();i++)
             for (int j=0;j<getRowCount();j++)
             {
@@ -225,12 +223,11 @@ public class GameFieldView extends GridLayout{
         return true;
         }
         else {
-          //  Toast.makeText(getContext(),((Integer)nplayer).toString()+" "+cells.get(id/10).get(id%10).getText().toString(), Toast.LENGTH_SHORT).show();
+           //Toast.makeText(getContext(),((Integer)nplayer).toString()+" " + cells.get(id/10).get(id%10).getText().toString(), Toast.LENGTH_SHORT).show();
         return false;
         }
 
     }
-
     void HideOptionsFor(Integer id,Integer points){
         for (int i=0;i<getRowCount();i++)
             for (int j=0;j<getRowCount();j++)
@@ -259,7 +256,6 @@ public class GameFieldView extends GridLayout{
     Integer MoveTo(Integer id1,Integer id2, Integer p){
         String text=cells.get(id1/10).get(id1%10).getText().toString();
         if (!cells.get(id2/10).get(id2%10).getText().toString().equals("")){
-            if(cells.get(id2/10).get(id2%10).getText().toString().equals(""))
             Respawn(id2);
         }
         cells.get(id1/10).get(id1%10).setText("");
@@ -272,5 +268,6 @@ public class GameFieldView extends GridLayout{
     Integer lastid=0;
     interface Callback{
         public void emits(String gameFieldState );
+        public Integer getnplayer();
     }
 }

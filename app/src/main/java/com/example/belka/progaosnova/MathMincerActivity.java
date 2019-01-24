@@ -33,6 +33,7 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
     EditText editText;
     int num = 0;
     QuestionView questionView;
+
     String[][] problems = new String[16][2];
     int[] numProblems = new int[16];
     int[][] statistic = new int[5][3];
@@ -44,6 +45,12 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         @Override
         public void emits(String gameFieldState) {
             socket.emit("message",MathMincerActivity.this.namePlayer,gameFieldState);
+        }
+
+        @Override
+        public Integer getnplayer() {
+            //Toast.makeText(getApplicationContext(), nplayer.toString(), Toast.LENGTH_SHORT).show();
+            return nplayer;
         }
     };
 
@@ -61,7 +68,7 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         Toast.makeText(this, "Привет, " + namePlayer, Toast.LENGTH_SHORT).show();
         try {
             grid = findViewById(R.id.grid);
-            grid.init(cbk,nplayers,nplayer);
+            grid.init(cbk,nplayers/*,nplayer*/);
             grid.setSideCount(5);
             grid.setSpaceBetweenCells(8);
             Toolbar toolbar = findViewById(R.id.toolbar);
@@ -179,17 +186,19 @@ public class MathMincerActivity extends AppCompatActivity implements View.OnClic
         }).on("message", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
+                Log.d("TAG1", "message");
                 String s = new String();
                 s = (String) args[0];
                 if(s.equals("number")){
-                    int er=(int)args[1];
-                    nplayer=er+1;
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            //questionView.nextProblem(1, nplayer.toString());
-                        }
-                    });
+                    //Log.d("TAG1", "string = " + s);
+                    nplayer = Integer.valueOf(args[1].toString())+1;
+                    //Log.d("TAG1", "nplayer = " + nplayer);
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            questionView.nextProblem(1, nplayer.toString());
+//                        }
+//                    });
                 } else {
                     Log.d("updateTable", s);
                     decode(s);
@@ -287,5 +296,5 @@ public String encode() {
             }
         });
     }
-    }
+}
 
