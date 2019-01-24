@@ -28,8 +28,8 @@ import java.util.Random;
 
 public class MathMincerActivity extends AppCompatActivity implements View.OnClickListener, QuestionView.Callback{
 
-    int nplayers=2;
-    Integer nplayer=1;
+    int nplayers=3;
+    Integer nplayer=0;
     EditText editText;
     int num = 0;
     QuestionView questionView;
@@ -203,20 +203,17 @@ boolean bol=false;
                     //Log.d("TAG1", "string = " + s);
                     nplayer = Integer.valueOf(args[1].toString())+1;
                     //Log.d("TAG1", "nplayer = " + nplayer);
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            questionView.nextProblem(1, nplayer.toString());
-//                        }
-//                    });
-                } else {
+                }else if (s.equals("startGame")) {
+                    String nm = (String) args[1];
+                    decode(nm);
+                }
+                else {
                     Log.d("updateTable", s);
                     decode(s);
                 }
             }
         });
         socket.connect();
-
     }
 
     @Override
