@@ -6,34 +6,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MathMincerActivity">
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:textAlignment="4"
         android:textDirection="5">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="#3366CC">
-            <TextView
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Score: "
-                android:id="@+id/notScore">
-            </TextView>
 
             <TextView
-                android:layout_marginLeft="10dp"
+                android:id="@+id/notScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Score: "
+                android:textSize="20dp"></TextView>
+
+            <TextView
+                android:id="@+id/Score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:text="0"
-                android:id="@+id/Score">
-            </TextView>
+                android:textSize="20dp"></TextView>
             <!--<TextView-->
             <!--android:id="@+id/back"-->
             <!--android:layout_width="40dp"-->
@@ -97,14 +99,21 @@
         app:layout_constraintStart_toStartOf="parent">
 
     </com.example.belka.progaosnova.QuestionView>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/blockerview"
-        android:background="#70000000"
-        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="36dp"
+        android:alpha="0.7"
+        android:background="#000000"
+        android:clickable="true"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:clickable="true"
-        android:text="lol"/>
+        android:gravity="center"
+        android:text="Пожалуйста, дождитесь начала игры."
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 </android.support.constraint.ConstraintLayout>

@@ -35,7 +35,7 @@ public class GameFieldView extends GridLayout{
     Integer nplayer;
     Callback callback;
     Integer state=0;
-    Integer p=100;
+    Integer p=0;
     Random r= new Random();
     Integer lastid=0;
     private int spaceBetweenCells = 0;
@@ -89,7 +89,7 @@ public class GameFieldView extends GridLayout{
                     cellsinit = new ArrayList<GameCellView>(5);
                     for (int j = 0; j<size; j++) {
 
-                        final GameCellView cellView = new GameCellView(getContext(),new MyAnimationListener());
+                        final GameCellView cellView = new GameCellView(getContext());
                         cellView.setOnClickListener(new OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -142,9 +142,8 @@ public class GameFieldView extends GridLayout{
                 }
                 for(i = 0;i<size;i++){
                     for (int j=0; j<size; j++){
-                        MyAnimationListener mal = new MyAnimationListener();
-                        //mal.Init(cells.get(i).get(j));
-                        cells.get(i).get(j).init(mal);
+                        cells.get(i).get(j).init();
+                        //cells.get(i).get(j).setMyfishka(cells.get(i).get(j).getText().toString().equals(nplayer.toString()));
                     }
                 }
                     i=0;

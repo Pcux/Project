@@ -10,17 +10,7 @@ public class GameCellView extends AppCompatTextView {
 
     boolean ifSelected = false;
 
-    public GameCellView(Context context, MyAnimationListener al) {
-        super(context);
-    }
 
-    public GameCellView(Context context, AttributeSet attrs, MyAnimationListener al) {
-        super(context, attrs);
-    }
-
-    public GameCellView(Context context, AttributeSet attrs, int defStyleAttr, MyAnimationListener al) {
-        super(context, attrs, defStyleAttr);
-    }
     public GameCellView(Context context) {
         super(context);
     }
@@ -33,12 +23,16 @@ public class GameCellView extends AppCompatTextView {
         super(context, attrs, defStyleAttr);
     }
 
-
-    public void init(MyAnimationListener al) {
+//boolean myfishka=false;
+    public void init() {
         setText("");
         setGravity(Gravity.CENTER);
         colorBackground();
     }
+   // public void setMyfishka(boolean myfishka){
+ //       this.myfishka=myfishka;
+ //       colorBackground();
+ //   }
     public void toggle(Integer state) {
         ifSelected = !ifSelected;
         colorBackground();
@@ -49,7 +43,13 @@ public class GameCellView extends AppCompatTextView {
     }
 
      void colorBackground() {
+ //       if(!myfishka){
         if (ifSelected) setBackgroundColor(getResources().getColor(android.R.color.holo_red_light));
         else setBackgroundColor(getResources().getColor(android.R.color.holo_blue_light));
+    //}
+  //      else
+  //      {
+   //         setBackgroundColor(getResources().getColor(android.R.color.holo_orange_light));
+  //     }
     }
 }

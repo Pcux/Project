@@ -77,7 +77,7 @@ boolean bol=false;
         Toast.makeText(this, "Привет, " + namePlayer, Toast.LENGTH_SHORT).show();
         try {
             grid = findViewById(R.id.grid);
-            grid.init(cbk,nplayers/*,nplayer*/);
+            grid.init(cbk,nplayers);
             grid.setSideCount(5);
             grid.setSpaceBetweenCells(8);
             Toolbar toolbar = findViewById(R.id.toolbar);
@@ -183,16 +183,6 @@ boolean bol=false;
                 String s = (String) args[0];
                 decode(s);
             }
-        }).on("finish", new Emitter.Listener() {
-            @Override
-            public void call(Object... args) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        questionView.nextProblem(1, "Игра закончилась. Результаты");
-                    }
-                });
-            }
         }).on("message", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
@@ -206,6 +196,25 @@ boolean bol=false;
                 }else if (s.equals("startGame")) {
                     String nm = (String) args[1];
                     decode(nm);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            findViewById(R.id.blockerview).setVisibility(View.GONE);
+                        }
+                    });
+                } else if (s.equals("finish")) {
+                    final String NameWinner = (String)args[1];
+                    final String ScoreWinner = (String)args[2];
+                    final TextView textView = findViewById(R.id.Score);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            TextView textView1 = findViewById(R.id.blockerview);
+                            textView1.setText("Игра окончена. Победитель: " + NameWinner + " Score:" +ScoreWinner);
+                            textView1.setVisibility(View.VISIBLE);
+                        }
+                    });
+
                 }
                 else {
                     Log.d("updateTable", s);
@@ -251,10 +260,12 @@ boolean bol=false;
                 l=2;
             }
         }
-        if (num>=15) {
+        if (num>=8) {
             problemsEnd = false;
+            TextView score = (TextView)findViewById(R.id.Score);
+            String sc = score.getText().toString();
             questionView.nextProblem( 0, "Задачи закончились. Дождитесь конца игры.");
-            socket.emit("message",namePlayer,"ProblemsOffTheEndGame");
+            socket.emit("message",namePlayer,"ProblemsOffTheEndGame " + sc);
         }
     }
 
