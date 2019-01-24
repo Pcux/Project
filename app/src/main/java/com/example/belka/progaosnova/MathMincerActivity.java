@@ -148,12 +148,13 @@ boolean bol=false;
     }
 
    public void toSocket() {
-        try {
+        try{
             socket = IO.socket("http://95.163.181.238:80");
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
         socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+
             @Override
             public void call(Object... objects) {
                 //socket.emit("message", namePlayer, "0 0 1 0 1 0 1 0 1 1");
@@ -190,7 +191,7 @@ boolean bol=false;
             }
         }).on("message", new Emitter.Listener() {
             @Override
-            public void call(Object... args) {
+         public void call(Object... args) {
                 String s = new String();
                 s = (String) args[0];
                 if(s.equals("number")){
@@ -208,6 +209,7 @@ boolean bol=false;
             }
         });
         socket.connect();
+
     }
 
     @Override
